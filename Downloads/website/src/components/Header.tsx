@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, Phone, GraduationCap, User as UserIcon, LogOut } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useAuth } from '../contexts/AuthContext';
-import { logout } from '../lib/firebase';
 import LoginModal from './LoginModal';
 
 const navLinks = [
@@ -18,7 +17,19 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-  const { user } = useAuth();
+  const auth = useAuth();
+  const user = (auth as any)?.user;
+  const authLogout = (auth as any)?.logout;
+
+  const handleLogout = () => {
+    if (typeof authLogout === 'function') {
+      authLogout();
+    } else {
+      // fallback: no-op when logout not provided by context
+      // eslint-disable-next-line no-console
+      console.warn('Logout function not available');
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -67,7 +78,7 @@ export default function Header() {
                   <span className="text-sm font-bold text-gray-700 hidden xl:inline">{user.displayName?.split(' ')[0]}</span>
                 </div>
                 <button 
-                  onClick={() => logout()}
+                  onClick={handleLogout}
                   className="p-2 text-gray-400 hover:text-secondary transition-colors"
                   title="Logout"
                 >
@@ -138,7 +149,7 @@ export default function Header() {
               ))}
               {user && (
                 <button 
-                  onClick={() => { logout(); setIsOpen(false); }}
+                  onClick={() => { handleLogout(); setIsOpen(false); }}
                   className="flex items-center gap-2 text-secondary font-bold"
                 >
                   <LogOut size={20} /> Logout
