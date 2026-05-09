@@ -7,7 +7,7 @@ export default function Contact() {
   const whatsappUrl = `https://wa.me/${whatsappNumber}`;
 
   return (
-    <section id="contact" className="bg-app-bg">
+    <section id="contact" className="bg-gray-50">
       <div className="section-container">
         <div className="grid lg:grid-cols-2 gap-16">
           <motion.div
@@ -22,7 +22,7 @@ export default function Contact() {
 
             <div className="space-y-8">
               <a href="tel:+916200598775" className="flex items-center gap-6 group">
-                <div className="bg-blue-600 p-4 rounded-2xl text-white shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform">
+                <div className="bg-blue-600 p-4 rounded-2xl text-white shadow-lg shadow-blue-500/20 group-hover:scale-110 transition-transform">
                   <Phone size={28} />
                 </div>
                 <div>
@@ -42,7 +42,7 @@ export default function Contact() {
               </a>
 
               <a href="mailto:info@leadacademy.com" className="flex items-center gap-6 group">
-                <div className="bg-red-600 p-4 rounded-2xl text-white shadow-lg shadow-secondary/20 group-hover:scale-110 transition-transform">
+                <div className="bg-red-600 p-4 rounded-2xl text-white shadow-lg shadow-red-600/20 group-hover:scale-110 transition-transform">
                   <Mail size={28} />
                 </div>
                 <div>
@@ -51,12 +51,12 @@ export default function Contact() {
                 </div>
               </a>
               <div className="flex items-center gap-6">
-                <div className="bg-accent p-4 rounded-2xl text-white shadow-lg shadow-accent/20">
+                <div className="bg-red-600 p-4 rounded-2xl text-white shadow-lg shadow-red-600/20">
                   <MapPin size={28} />
                 </div>
                 <div>
                   <div className="text-sm text-gray-500 uppercase font-bold tracking-widest">Location</div>
-                  <div className="text-2xl font-bold text-accent">Patna, Bihar, India</div>
+                  <div className="text-2xl font-bold text-red-600">Patna, Bihar, India</div>
                 </div>
               </div>
             </div>
@@ -66,7 +66,7 @@ export default function Contact() {
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="bg-white p-10 rounded-3xl shadow-xl shadow-primary/5 border border-gray-100"
+            className="bg-white p-10 rounded-3xl shadow-xl shadow-blue-500/5 border border-gray-100"
           >
             <h3 className="text-2xl font-bold mb-8 flex items-center gap-2">
               <MessageSquare className="text-blue-700" /> Online Admission Form
@@ -75,16 +75,16 @@ export default function Contact() {
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-sm font-bold text-gray-700">Full Name</label>
-                  <input type="text" placeholder="Your Name" className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all" />
+                  <input type="text" placeholder="Your Name" className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all" />
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-bold text-gray-700">Contact Number</label>
-                  <input type="tel" placeholder="+91 00000 00000" className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all" />
+                  <input type="tel" placeholder="+91 00000 00000" className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all" />
                 </div>
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-bold text-gray-700">Interested Course</label>
-                <select className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all bg-white">
+                <select className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all bg-white">
                   <option>Select a Course</option>
                   <option>UPSC</option>
                   <option>BPSC</option>
@@ -95,9 +95,9 @@ export default function Contact() {
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-bold text-gray-700">Message</label>
-                <textarea rows={4} placeholder="Your message or query..." className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"></textarea>
+                <textarea rows={4} placeholder="Your message or query..." className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all"></textarea>
               </div>
-              <button type="submit" className="w-full btn-primary flex items-center justify-center gap-2 py-4">
+              <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition-all flex items-center justify-center gap-2 py-4">
                 Send Application <Send size={18} />
               </button>
             </form>

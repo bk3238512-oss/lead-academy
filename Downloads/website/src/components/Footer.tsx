@@ -14,7 +14,7 @@ export default function Footer() {
               </div>
               <div className="flex flex-col">
                 <span className="text-xl font-bold font-serif leading-none">LEAD Academy</span>
-                <span className="text-[10px] uppercase tracking-wider font-semibold text-accent">Patna</span>
+                <span className="text-[10px] uppercase tracking-wider font-semibold text-yellow-400">Patna</span>
               </div>
             </div>
             <p className="text-blue-100 italic leading-relaxed">
@@ -22,7 +22,7 @@ export default function Footer() {
             </p>
             <div className="flex gap-4">
               <a href="https://www.facebook.com/p/Lead-Academy-Patna-100063665121342/" target="_blank" rel="noopener noreferrer" className="bg-white/10 p-2 rounded-lg hover:bg-accent transition-colors"><Facebook size={20} /></a>
-              <a href="#" className="bg-white/10 p-2 rounded-lg hover:bg-accent transition-colors"><Twitter size={20} /></a>
+              <a href="#" className="bg-white/10 p-2 rounded-lg hover:bg-yellow-500 transition-colors"><Twitter size={20} /></a>
               <a href="https://www.instagram.com/leadacademypatna/" target="_blank" rel="noopener noreferrer" className="bg-white/10 p-2 rounded-lg hover:bg-accent transition-colors"><Instagram size={20} /></a>
               <a href="https://www.youtube.com/@leadacademypatnaby-sumanpa4179" target="_blank" rel="noopener noreferrer" className="bg-white/10 p-2 rounded-lg hover:bg-accent transition-colors"><Youtube size={20} /></a>
               <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="bg-[#25D366]/20 p-2 rounded-lg hover:bg-[#25D366] transition-colors"><MessageCircle size={20} fill="currentColor" /></a>
@@ -30,7 +30,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-xl font-bold mb-6 font-serif border-l-4 border-accent pl-4">Quick Links</h4>
+            <h4 className="text-xl font-bold mb-6 font-serif border-l-4 border-yellow-400 pl-4">Quick Links</h4>
             <ul className="space-y-4 text-blue-100 font-medium">
               <li><a href="#home" className="hover:text-accent transition-colors">Home</a></li>
               <li><a href="#about" className="hover:text-accent transition-colors">About Us</a></li>
