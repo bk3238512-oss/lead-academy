@@ -1,0 +1,57 @@
+type User @table {
+  username: String!
+  email: String!
+  passwordHash: String!
+  role: String!
+  createdAt: Timestamp!
+  displayName: String
+  phoneNumber: String
+  address: String
+}
+
+type Course @table {
+  title: String!
+  examType: String!
+  description: String!
+  price: Float!
+  createdAt: Timestamp!
+  duration: String
+  syllabusUrl: String
+}
+
+type Enrollment @table(key: ["user", "course"]) {
+  user: User!
+  course: Course!
+  enrolledAt: Timestamp!
+  completionDate: Timestamp
+  progress: Int
+}
+
+type LiveClass @table {
+  course: Course!
+  title: String!
+  startTime: Timestamp!
+  endTime: Timestamp!
+  classUrl: String!
+  description: String
+  recordingUrl: String
+}
+
+type Material @table {
+  course: Course!
+  liveClass: LiveClass
+  title: String!
+  fileUrl: String!
+  type: String!
+  createdAt: Timestamp!
+}
+
+type MockTest @table {
+  course: Course!
+  title: String!
+  totalQuestions: Int!
+  durationMinutes: Int!
+  createdAt: Timestamp!
+  passingScore: Int
+  instructions: String
+}

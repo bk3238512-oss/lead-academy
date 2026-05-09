@@ -1,0 +1,25 @@
+mutation SeedProductData @transaction @auth(level: USER, insecureReason: "This mutation is for seeding initial data and can be run by any authenticated user.") {
+  products_insertMany(data: [
+    {
+      id: "a1b2c3d4-e5f6-7890-1234-567890abcdef",
+      name: "Wireless Headphones",
+      description: "High-fidelity audio with noise cancellation.",
+      price: 199.99,
+      inStock: true
+    },
+    {
+      id: "b2c3d4e5-f6a7-8901-2345-67890abcdef0",
+      name: "Smartwatch Pro",
+      description: "Track your fitness and stay connected.",
+      price: 249.00,
+      inStock: true
+    },
+    {
+      id: "c3d4e5f6-a7b8-9012-3456-7890abcdef01",
+      name: "Portable Bluetooth Speaker",
+      description: "Compact and powerful sound on the go.",
+      price: 79.99,
+      inStock: false
+    }
+  ])
+}

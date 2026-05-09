@@ -1,0 +1,61 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 0. Global Safety Net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Primitive Definitions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    // Helper to check enrollment
+    function isVerifiedStudent(courseId) {
+      return isSignedIn() && exists(/databases/$(database)/documents/enrollments/$(request.auth.uid + '_' + courseId)) &&
+             get(/databases/$(database)/documents/enrollments/$(request.auth.uid + '_' + courseId)).data.status == 'verified';
+    }
+
+    // User Profiles
+    match /users/{userId} {
+      allow get: if isOwner(userId);
+      allow create: if isOwner(userId);
+      allow update: if isOwner(userId) && incoming().diff(existing()).affectedKeys().hasOnly(['displayName', 'photoURL', 'lastLogin', 'phoneNumber']);
+    }
+
+    // Courses (Public)
+    match /courses/{courseId} {
+      allow read: if true;
+      
+      // Comments inside courses
+      match /comments/{commentId} {
+        allow read: if isVerifiedStudent(courseId);
+        allow create: if isVerifiedStudent(courseId) && incoming().userId == request.auth.uid;
+      }
+    }
+
+    // Enrollments
+    match /enrollments/{enrollmentId} {
+      allow read, write: if isSignedIn() && enrollmentId >= request.auth.uid && enrollmentId <= request.auth.uid + '\uf8ff';
+    }
+
+    // Transactions
+    match /transactions/{transactionId} {
+      allow read: if isSignedIn() && resource.data.userId == request.auth.uid;
+      allow create: if isSignedIn() && incoming().userId == request.auth.uid;
+    }
+  }
+}
