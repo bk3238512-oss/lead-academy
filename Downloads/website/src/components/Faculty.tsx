@@ -22,7 +22,7 @@ export default function Faculty() {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl mb-4"
           >
-            Meet Our <span className="text-primary">Expert Faculty</span>
+            Meet Our <span className="text-blue-700">Expert Faculty</span>
           </motion.h2>
           <p className="text-gray-500 max-w-2xl mx-auto">Learn from the best in the industry who have years of experience in mentoring students for government exams.</p>
         </div>
@@ -41,14 +41,14 @@ export default function Faculty() {
                 <img src={member.image} alt={member.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" referrerPolicy="no-referrer" />
               </div>
               <h3 className="text-3xl font-bold mb-2">{member.name}</h3>
-              <p className="text-primary font-bold uppercase tracking-widest text-sm italic">{member.role}</p>
+              <p className="text-blue-700 font-bold uppercase tracking-widest text-sm italic">{member.role}</p>
             </motion.div>
           ))}
         </div>
 
         <div className="border-t border-gray-100 pt-24">
            <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl mb-4">What Our <span className="text-secondary">Students Say</span></h2>
+            <h2 className="text-3xl md:text-4xl mb-4">What Our <span className="text-red-600">Students Say</span></h2>
           </div>
           <div className="grid md:grid-cols-2 gap-8">
             {testimonials.map((t, i) => (
@@ -63,13 +63,13 @@ export default function Faculty() {
                 <div className="text-accent mb-4 flex gap-1">
                   {[...Array(5)].map((_, i) => <Star key={i} size={16} fill="currentColor" />)}
                 </div>
-                <Quote className="absolute top-8 right-8 text-primary/10" size={64} />
+                <Quote className="absolute top-8 right-8 text-blue-700/10" size={64} />
                 <p className="text-lg italic text-gray-700 mb-6 relative z-10 leading-relaxed uppercase">
                   "{t.quote}"
                 </p>
                 <div>
                   <div className="font-bold text-xl">{t.name}</div>
-                  <div className="text-secondary font-bold text-sm tracking-widest">{t.success}</div>
+                  <div className="text-red-600 font-bold text-sm tracking-widest">{t.success}</div>
                 </div>
               </motion.div>
             ))}

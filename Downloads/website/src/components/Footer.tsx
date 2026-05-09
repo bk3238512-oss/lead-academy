@@ -4,12 +4,12 @@ import { GraduationCap, Facebook, Twitter, Instagram, Youtube, Phone, Mail, MapP
 export default function Footer() {
   const whatsappUrl = "https://wa.me/916200598775";
   return (
-    <footer className="bg-primary-dark text-white pt-20 pb-10">
+    <footer className="bg-blue-800 text-white pt-20 pb-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           <div className="space-y-6">
             <div className="flex items-center gap-2">
-              <div className="bg-white p-2 rounded-lg text-primary">
+              <div className="bg-white p-2 rounded-lg text-blue-700">
                 <GraduationCap size={28} />
               </div>
               <div className="flex flex-col">

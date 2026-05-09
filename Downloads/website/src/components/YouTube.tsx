@@ -28,17 +28,17 @@ export default function YouTube() {
       <div className="section-container">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 text-secondary font-bold uppercase tracking-widest text-sm mb-4">
+            <div className="inline-flex items-center gap-2 text-red-600 font-bold uppercase tracking-widest text-sm mb-4">
               <Youtube size={20} />
               <span>Learn on YouTube</span>
             </div>
-            <h2 className="text-4xl md:text-5xl">Watch Our <span className="text-primary italic">Expert Lectures</span></h2>
+            <h2 className="text-4xl md:text-5xl">Watch Our <span className="text-blue-700 italic">Expert Lectures</span></h2>
           </div>
           <a 
             href={YOUTUBE_CHANNEL_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 text-primary font-bold hover:text-secondary transition-colors"
+            className="flex items-center gap-2 text-blue-700 font-bold hover:text-red-600 transition-colors"
           >
             Visit Our Channel <ExternalLink size={18} />
           </a>
@@ -66,7 +66,7 @@ export default function YouTube() {
                     <div className="w-14 h-14 bg-white/20 backdrop-blur-md text-white rounded-full flex items-center justify-center mb-3 border border-white/30">
                       <Lock size={24} />
                     </div>
-                    <span className="text-white font-bold text-xs uppercase tracking-widest px-4 py-2 bg-primary rounded-lg shadow-xl">Login to Watch</span>
+                    <span className="text-white font-bold text-xs uppercase tracking-widest px-4 py-2 bg-blue-600 rounded-lg shadow-xl">Login to Watch</span>
                   </div>
                 ) : (
                   <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
@@ -80,7 +80,7 @@ export default function YouTube() {
                   {video.views} Views
                 </div>
               </div>
-              <h3 className="text-xl font-bold group-hover:text-primary transition-colors leading-tight">
+              <h3 className="text-xl font-bold group-hover:text-blue-700 transition-colors leading-tight">
                 {video.title}
               </h3>
             </motion.a>

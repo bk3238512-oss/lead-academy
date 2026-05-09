@@ -3,18 +3,18 @@ import { motion } from 'motion/react';
 import { Trophy, TrendingUp, Users, Award } from 'lucide-react';
 
 const stats = [
-  { label: 'Total Selections', value: '2,500+', icon: Trophy, color: 'text-primary' },
-  { label: 'BPSC Selections', value: '150+', icon: Award, color: 'text-secondary' },
+  { label: 'Total Selections', value: '2,500+', icon: Trophy, color: 'text-blue-700' },
+  { label: 'BPSC Selections', value: '150+', icon: Award, color: 'text-red-600' },
   { label: 'Railway & SSC', value: '800+', icon: TrendingUp, color: 'text-accent' },
   { label: 'Success Rate', value: '94%', icon: Users, color: 'text-green-600' },
 ];
 
 export default function Results() {
   return (
-    <section id="results" className="bg-primary text-white py-24 overflow-hidden relative">
+    <section id="results" className="bg-blue-600 text-white py-24 overflow-hidden relative">
       {/* Decorative patterns */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full -mr-48 -mt-48 blur-3xl"></div>
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/10 rounded-full -ml-48 -mb-48 blur-3xl"></div>
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-red-600/10 rounded-full -ml-48 -mb-48 blur-3xl"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
@@ -51,7 +51,7 @@ export default function Results() {
         </div>
 
         <div className="mt-20 text-center">
-           <button className="bg-white text-primary hover:bg-accent hover:text-white font-bold py-4 px-10 rounded-2xl transition-all duration-300 shadow-xl shadow-black/20 group">
+           <button className="bg-white text-blue-700 hover:bg-accent hover:text-white font-bold py-4 px-10 rounded-2xl transition-all duration-300 shadow-xl shadow-black/20 group">
              Check Detailed Results <Award className="inline-block ml-2 group-hover:rotate-12 transition-transform" />
            </button>
         </div>

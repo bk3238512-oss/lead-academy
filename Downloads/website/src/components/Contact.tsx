@@ -15,19 +15,19 @@ export default function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl mb-8">Get In <span className="text-primary italic">Touch</span></h2>
+            <h2 className="text-4xl md:text-5xl mb-8">Get In <span className="text-blue-700 italic">Touch</span></h2>
             <p className="text-gray-600 mb-12">
               Have questions about our courses or admission process? Reach out to us and our team will get back to you shortly.
             </p>
 
             <div className="space-y-8">
               <a href="tel:+916200598775" className="flex items-center gap-6 group">
-                <div className="bg-primary p-4 rounded-2xl text-white shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform">
+                <div className="bg-blue-600 p-4 rounded-2xl text-white shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform">
                   <Phone size={28} />
                 </div>
                 <div>
                   <div className="text-sm text-gray-500 uppercase font-bold tracking-widest">Call Us</div>
-                  <div className="text-2xl font-bold text-primary">+91 6200598775</div>
+                  <div className="text-2xl font-bold text-blue-700">+91 6200598775</div>
                 </div>
               </a>
 
@@ -42,12 +42,12 @@ export default function Contact() {
               </a>
 
               <a href="mailto:info@leadacademy.com" className="flex items-center gap-6 group">
-                <div className="bg-secondary p-4 rounded-2xl text-white shadow-lg shadow-secondary/20 group-hover:scale-110 transition-transform">
+                <div className="bg-red-600 p-4 rounded-2xl text-white shadow-lg shadow-secondary/20 group-hover:scale-110 transition-transform">
                   <Mail size={28} />
                 </div>
                 <div>
                   <div className="text-sm text-gray-500 uppercase font-bold tracking-widest">Email Us</div>
-                  <div className="text-2xl font-bold text-secondary">info@leadacademy.com</div>
+                  <div className="text-2xl font-bold text-red-600">info@leadacademy.com</div>
                 </div>
               </a>
               <div className="flex items-center gap-6">
@@ -69,7 +69,7 @@ export default function Contact() {
             className="bg-white p-10 rounded-3xl shadow-xl shadow-primary/5 border border-gray-100"
           >
             <h3 className="text-2xl font-bold mb-8 flex items-center gap-2">
-              <MessageSquare className="text-primary" /> Online Admission Form
+              <MessageSquare className="text-blue-700" /> Online Admission Form
             </h3>
             <form className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">

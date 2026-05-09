@@ -41,7 +41,7 @@ export default function Courses({ onCourseSelect }: CoursesProps) {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl mb-4"
           >
-            Excellence in <span className="text-primary">Every Course</span>
+            Excellence in <span className="text-blue-700">Every Course</span>
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -65,14 +65,14 @@ export default function Courses({ onCourseSelect }: CoursesProps) {
               whileHover={{ y: -5 }}
               className="p-8 rounded-2xl border border-gray-100 bg-app-bg hover:bg-white hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 group"
             >
-              <div className="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+              <div className="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center text-blue-700 mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
                 <course.icon size={28} />
               </div>
-              <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">{course.name}</h3>
+              <h3 className="text-xl font-bold mb-2 group-hover:text-blue-700 transition-colors">{course.name}</h3>
               <p className="text-sm text-gray-500 mb-4 font-medium uppercase tracking-wider">{course.studentsCount} Students Enrolled</p>
               <button 
                 onClick={handleEnrollClick}
-                className="text-primary font-bold inline-flex items-center gap-2 group-hover:gap-3 transition-all"
+                className="text-blue-700 font-bold inline-flex items-center gap-2 group-hover:gap-3 transition-all"
               >
                 {user ? 'View Content' : 'Enroll Now'} <BookOpen size={16} />
               </button>

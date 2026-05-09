@@ -14,7 +14,7 @@ export default function About() {
             className="space-y-8"
           >
             <div>
-              <h2 className="text-4xl md:text-5xl mb-6">About LEAD Academy <span className="text-primary italic">Patna</span></h2>
+              <h2 className="text-4xl md:text-5xl mb-6">About LEAD Academy <span className="text-blue-700 italic">Patna</span></h2>
               <p className="text-lg text-gray-600 leading-relaxed italic">
                 "Our mission is to empower students with quality education and help them achieve success in government examinations through smart learning and proper mentorship."
               </p>
@@ -22,7 +22,7 @@ export default function About() {
 
             <div className="space-y-4">
               <div className="flex gap-4">
-                <div className="flex-shrink-0 bg-white p-3 rounded-xl shadow-sm text-primary">
+                <div className="flex-shrink-0 bg-white p-3 rounded-xl shadow-sm text-blue-700">
                   <History size={24} />
                 </div>
                 <div>
@@ -31,7 +31,7 @@ export default function About() {
                 </div>
               </div>
               <div className="flex gap-4">
-                <div className="flex-shrink-0 bg-white p-3 rounded-xl shadow-sm text-secondary">
+                <div className="flex-shrink-0 bg-white p-3 rounded-xl shadow-sm text-red-600">
                   <MapPin size={24} />
                 </div>
                 <div>
@@ -78,7 +78,7 @@ export default function About() {
               <div className="rounded-3xl overflow-hidden h-64 border-4 border-white shadow-lg">
                 <img src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?q=80&w=2070&auto=format&fit=crop" alt="NCERT & Competitive Exam Books" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
               </div>
-              <div className="bg-primary p-6 rounded-3xl text-white shadow-lg shadow-primary/30">
+              <div className="bg-blue-600 p-6 rounded-3xl text-white shadow-lg shadow-primary/30">
                 <div className="text-3xl font-bold mb-1">NCERT</div>
                 <div className="text-blue-200 uppercase tracking-wider text-xs font-bold">Expert Content</div>
               </div>

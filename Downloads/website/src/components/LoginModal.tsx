@@ -152,8 +152,8 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
           >
             <div className="p-8">
               <div className="flex justify-between items-center mb-8">
-                <div className="flex items-center gap-2 text-primary font-bold">
-                  <div className="bg-primary p-2 rounded-xl text-white">
+                <div className="flex items-center gap-2 text-blue-700 font-bold">
+                  <div className="bg-blue-600 p-2 rounded-xl text-white">
                     <LogIn size={24} />
                   </div>
                   <span className="text-xl uppercase tracking-widest">Sign In</span>
@@ -189,12 +189,12 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
                       />
                     </div>
                     
-                    {error && <p className="text-secondary text-sm font-bold text-center">{error}</p>}
+                    {error && <p className="text-red-600 text-sm font-bold text-center">{error}</p>}
 
                     <button
                       type="submit"
                       disabled={loading || phone.replace('+91', '').length < 10}
-                      className="w-full bg-primary text-white p-4 rounded-2xl font-bold shadow-xl shadow-primary/20 hover:bg-primary-dark transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+                      className="w-full bg-blue-600 text-white p-4 rounded-2xl font-bold shadow-xl shadow-primary/20 hover:bg-blue-800 transition-all flex items-center justify-center gap-2 disabled:opacity-50"
                     >
                       {loading ? "Sending..." : "Send Verification Code"}
                       <ArrowRight size={20} />
@@ -220,12 +220,12 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
                       className="w-full bg-gray-50 border-2 border-gray-100 rounded-2xl p-4 text-center text-2xl font-black tracking-[0.5em] focus:border-primary transition-all placeholder:tracking-normal placeholder:text-sm placeholder:font-medium"
                     />
 
-                    {error && <p className="text-secondary text-sm font-bold text-center">{error}</p>}
+                    {error && <p className="text-red-600 text-sm font-bold text-center">{error}</p>}
 
                     <button
                       type="submit"
                       disabled={loading || otp.length < 6}
-                      className="w-full bg-primary text-white p-4 rounded-2xl font-bold shadow-xl shadow-primary/20 hover:bg-primary-dark transition-all disabled:opacity-50"
+                      className="w-full bg-blue-600 text-white p-4 rounded-2xl font-bold shadow-xl shadow-primary/20 hover:bg-blue-800 transition-all disabled:opacity-50"
                     >
                       {loading ? "Verifying..." : "Verify & Login"}
                     </button>
@@ -235,7 +235,7 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
                         type="button"
                         disabled={resendTimer > 0 || loading}
                         onClick={() => handleSendOTP()}
-                        className="w-full text-gray-400 font-bold text-sm hover:text-primary transition-colors disabled:opacity-50"
+                        className="w-full text-gray-400 font-bold text-sm hover:text-blue-700 transition-colors disabled:opacity-50"
                       >
                         {resendTimer > 0 ? `Resend OTP in ${resendTimer}s` : "Resend OTP"}
                       </button>
@@ -243,7 +243,7 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
                       <button 
                         type="button"
                         onClick={() => setStep('phone')}
-                        className="w-full text-gray-400 font-bold text-sm hover:text-primary transition-colors"
+                        className="w-full text-gray-400 font-bold text-sm hover:text-blue-700 transition-colors"
                       >
                         Change Phone Number
                       </button>
@@ -263,7 +263,7 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
 
               <button
                 onClick={handleGoogleLogin}
-                className="w-full flex items-center justify-center gap-4 bg-white border-2 border-gray-100 p-4 rounded-2xl hover:border-primary/50 hover:bg-primary/5 transition-all group mb-4"
+                className="w-full flex items-center justify-center gap-4 bg-white border-2 border-gray-100 p-4 rounded-2xl hover:border-primary/50 hover:bg-blue-600/5 transition-all group mb-4"
               >
                 <img src="https://www.google.com/favicon.ico" alt="Google" className="w-6 h-6 grayscale group-hover:grayscale-0 transition-all" />
                 <span className="font-bold text-gray-700">Google Account</span>
@@ -271,7 +271,7 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
 
               <p className="text-center text-xs text-gray-400 mt-6 leading-relaxed">
                 By signing in, you agree to Lead Academy's <br />
-                <a href="#" className="text-primary font-bold hover:underline">Terms of Service</a> & <a href="#" className="text-primary font-bold hover:underline">Privacy Policy</a>
+                <a href="#" className="text-blue-700 font-bold hover:underline">Terms of Service</a> & <a href="#" className="text-blue-700 font-bold hover:underline">Privacy Policy</a>
               </p>
             </div>
           </motion.div>

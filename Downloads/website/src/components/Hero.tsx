@@ -23,13 +23,13 @@ export default function Hero() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="inline-flex items-center gap-2 bg-blue-100 text-primary px-4 py-2 rounded-full mb-6 font-semibold text-sm">
+            <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full mb-6 font-semibold text-sm">
               <Star size={16} className="fill-current" />
               <span>Bihar's Most Trusted Coaching Platform</span>
             </div>
             
             <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-              Crack <span className="text-secondary italic">Government</span> Exams with Expert Guidance
+              Crack <span className="text-red-600 italic">Government</span> Exams with Expert Guidance
             </h1>
             
             <p className="text-xl text-gray-600 mb-8 max-w-lg leading-relaxed">
@@ -40,7 +40,7 @@ export default function Hero() {
               <button className="btn-primary flex items-center justify-center gap-2">
                 Join Online Course <ArrowRight size={20} />
               </button>
-              <a href="#youtube" className="bg-white border-2 border-primary text-primary hover:bg-primary hover:text-white font-bold py-3 px-6 rounded-xl transition-all duration-200 flex items-center justify-center gap-2">
+              <a href="#youtube" className="bg-white border-2 border-primary text-blue-700 hover:bg-blue-600 hover:text-white font-bold py-3 px-6 rounded-xl transition-all duration-200 flex items-center justify-center gap-2">
                 Watch Demo Video
               </a>
             </div>
@@ -99,7 +99,7 @@ export default function Hero() {
             
             {/* Decorative elements */}
             <div className="absolute -top-10 -right-10 w-40 h-40 bg-accent rounded-full -z-10 blur-3xl opacity-30"></div>
-            <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-secondary rounded-full -z-10 blur-3xl opacity-30"></div>
+            <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-red-600 rounded-full -z-10 blur-3xl opacity-30"></div>
           </motion.div>
         </div>
       </div>

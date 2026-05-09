@@ -24,7 +24,7 @@ export default function Features() {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl mb-4"
           >
-            Why Choose <span className="text-secondary">LEAD Academy?</span>
+            Why Choose <span className="text-red-600">LEAD Academy?</span>
           </motion.h2>
           <p className="text-gray-500">Unlock your potential with our unique teaching methodology.</p>
         </div>
@@ -39,7 +39,7 @@ export default function Features() {
               transition={{ delay: index * 0.05 }}
               className="group"
             >
-              <div className="mb-6 inline-block p-4 rounded-2xl bg-app-bg group-hover:bg-primary group-hover:text-white transition-all duration-300">
+              <div className="mb-6 inline-block p-4 rounded-2xl bg-app-bg group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
                 <feature.icon size={32} />
               </div>
               <h3 className="text-xl font-bold mb-3">{feature.name}</h3>

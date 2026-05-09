@@ -236,14 +236,14 @@ export default function CourseDetail({ onBack }: CourseDetailProps) {
     return (
       <div className="min-h-screen bg-app-bg flex items-center justify-center p-6">
         <div className="text-center max-w-sm">
-          <div className="bg-primary/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-            <Lock size={40} className="text-primary" />
+          <div className="bg-blue-600/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+            <Lock size={40} className="text-blue-700" />
           </div>
           <h2 className="text-2xl font-bold mb-4">Login Required</h2>
           <p className="text-gray-500 mb-8">Please login to view course details and enroll.</p>
           <button 
             onClick={() => setShowLoginModal(true)}
-            className="w-full bg-primary text-white py-4 rounded-2xl font-bold shadow-xl shadow-primary/20"
+            className="w-full bg-blue-600 text-white py-4 rounded-2xl font-bold shadow-xl shadow-primary/20"
           >
             Sign in to Continue
           </button>
@@ -260,12 +260,12 @@ export default function CourseDetail({ onBack }: CourseDetailProps) {
     <div className="min-h-screen bg-app-bg">
       <div className="bg-white border-b sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-          <button onClick={onBack} className="flex items-center gap-2 text-gray-500 hover:text-primary transition-colors font-bold">
+          <button onClick={onBack} className="flex items-center gap-2 text-gray-500 hover:text-blue-700 transition-colors font-bold">
             <ArrowLeft size={20} /> <span className="hidden sm:inline">Back to Courses</span>
           </button>
           <div className="flex items-center gap-3">
-             <div className="bg-primary/5 px-4 py-2 rounded-xl">
-               <span className="text-primary font-bold text-sm tracking-tight">{GK_GS_COURSE.title}</span>
+             <div className="bg-blue-600/5 px-4 py-2 rounded-xl">
+               <span className="text-blue-700 font-bold text-sm tracking-tight">{GK_GS_COURSE.title}</span>
              </div>
           </div>
           <div className="w-10"></div>
@@ -309,7 +309,7 @@ export default function CourseDetail({ onBack }: CourseDetailProps) {
                         className="absolute inset-0 z-10 flex items-center justify-center bg-black/60 backdrop-blur-sm pointer-events-none"
                       >
                         <div className="flex flex-col items-center gap-4">
-                          <Loader2 size={40} className="text-primary animate-spin" />
+                          <Loader2 size={40} className="text-blue-700 animate-spin" />
                           <div className="text-white text-xs font-bold uppercase tracking-widest animate-pulse">Buffering Lecture...</div>
                         </div>
                       </motion.div>
@@ -372,7 +372,7 @@ export default function CourseDetail({ onBack }: CourseDetailProps) {
             {enrollmentStatus === 'verified' && (
               <div className="bg-white rounded-3xl p-8 shadow-lg">
                 <div className="flex items-center gap-3 mb-8">
-                  <MessageCircle className="text-primary" />
+                  <MessageCircle className="text-blue-700" />
                   <h3 className="text-2xl font-bold">Student Discussion</h3>
                 </div>
 
@@ -390,7 +390,7 @@ export default function CourseDetail({ onBack }: CourseDetailProps) {
                         <button 
                           type="submit"
                           disabled={!newComment.trim()}
-                          className="bg-primary text-white px-8 py-3 rounded-xl font-bold flex items-center gap-2 hover:bg-primary-dark transition-all disabled:opacity-50"
+                          className="bg-blue-600 text-white px-8 py-3 rounded-xl font-bold flex items-center gap-2 hover:bg-blue-800 transition-all disabled:opacity-50"
                         >
                           Post Comment <Send size={18} />
                         </button>
@@ -432,7 +432,7 @@ export default function CourseDetail({ onBack }: CourseDetailProps) {
           <div className="lg:col-span-1 space-y-8">
             {enrollmentStatus === 'verified' ? (
               <div className="bg-white rounded-3xl shadow-lg overflow-hidden flex flex-col h-[800px] sticky top-32">
-                <div className="p-6 bg-primary text-white">
+                <div className="p-6 bg-blue-600 text-white">
                   <h3 className="font-bold text-xl mb-1">Course Content</h3>
                   <p className="text-blue-100 text-xs font-bold uppercase tracking-widest">{GK_GS_COURSE.videos.length} Total Lessons</p>
                 </div>
@@ -448,17 +448,17 @@ export default function CourseDetail({ onBack }: CourseDetailProps) {
                       }}
                       className={`w-full flex items-center gap-4 p-4 rounded-2xl transition-all text-left group ${
                         activeVideo.url === video.url 
-                          ? 'bg-primary/5 border-2 border-primary/20' 
+                          ? 'bg-blue-600/5 border-2 border-primary/20' 
                           : 'hover:bg-gray-50 border-2 border-transparent'
                       }`}
                     >
                       <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${
-                        activeVideo.url === video.url ? 'bg-primary text-white' : 'bg-gray-100 text-gray-400 group-hover:text-primary transition-colors'
+                        activeVideo.url === video.url ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-400 group-hover:text-blue-700 transition-colors'
                       }`}>
                         <Play size={18} fill={activeVideo.url === video.url ? "currentColor" : "none"} />
                       </div>
                       <div>
-                        <div className={`text-sm font-bold line-clamp-1 ${activeVideo.url === video.url ? 'text-primary' : 'text-gray-700'}`}>
+                        <div className={`text-sm font-bold line-clamp-1 ${activeVideo.url === video.url ? 'text-blue-700' : 'text-gray-700'}`}>
                           {video.title}
                         </div>
                         <div className="text-[10px] text-gray-400 uppercase tracking-widest font-bold">Lecture {idx + 1}</div>
@@ -483,7 +483,7 @@ export default function CourseDetail({ onBack }: CourseDetailProps) {
                   
                   <div className="bg-gray-50 rounded-2xl p-6 text-left space-y-4 mb-8">
                     <div className="flex gap-3">
-                       <ShieldCheck className="text-primary shrink-0" size={20} />
+                       <ShieldCheck className="text-blue-700 shrink-0" size={20} />
                        <div className="text-sm text-gray-600 font-medium">Automatic access will be granted once verified.</div>
                     </div>
                     <div className="flex gap-3">
@@ -504,25 +504,25 @@ export default function CourseDetail({ onBack }: CourseDetailProps) {
               </div>
             ) : (
               <div className="bg-white rounded-3xl shadow-xl overflow-hidden sticky top-32 border-2 border-primary/10">
-                <div className="p-8 text-center border-b bg-primary/5">
+                <div className="p-8 text-center border-b bg-blue-600/5">
                    <div className="text-gray-500 font-bold uppercase tracking-widest text-xs mb-2">Total Amount</div>
-                   <div className="text-5xl font-black text-primary">₹{amount}</div>
+                   <div className="text-5xl font-black text-blue-700">₹{amount}</div>
                 </div>
                 
                 <div className="p-8 space-y-8">
                    <div className="space-y-6">
                       <div className="flex items-start gap-4">
-                        <div className="bg-secondary/10 p-3 rounded-xl text-secondary font-bold text-lg">1.</div>
+                        <div className="bg-red-600/10 p-3 rounded-xl text-red-600 font-bold text-lg">1.</div>
                         <div>
                           <div className="font-bold text-gray-900 mb-1 leading-tight">Pay via UPI</div>
-                          <div className="text-xs text-gray-500 font-medium">To ID: <span className="text-primary font-bold">{upiId}</span></div>
+                          <div className="text-xs text-gray-500 font-medium">To ID: <span className="text-blue-700 font-bold">{upiId}</span></div>
                         </div>
                       </div>
                       
                       <div className="flex flex-col gap-3">
                          <a 
                           href={upiDeepLink}
-                          className="w-full flex items-center justify-center gap-3 bg-secondary text-white py-4 rounded-2xl font-bold shadow-lg shadow-secondary/20 hover:scale-[1.02] transition-all"
+                          className="w-full flex items-center justify-center gap-3 bg-red-600 text-white py-4 rounded-2xl font-bold shadow-lg shadow-secondary/20 hover:scale-[1.02] transition-all"
                          >
                             <Smartphone size={20} /> Pay via App
                          </a>
@@ -542,7 +542,7 @@ export default function CourseDetail({ onBack }: CourseDetailProps) {
 
                    <div className="space-y-6">
                       <div className="flex items-start gap-4">
-                        <div className="bg-primary/10 p-3 rounded-xl text-primary font-bold text-lg">2.</div>
+                        <div className="bg-blue-600/10 p-3 rounded-xl text-blue-700 font-bold text-lg">2.</div>
                         <div className="flex-1 space-y-4">
                           <div className="font-bold text-gray-900 leading-tight">Verification Proof</div>
                           
@@ -598,7 +598,7 @@ export default function CourseDetail({ onBack }: CourseDetailProps) {
                         onClick={handleSubmitUTR}
                         disabled={!utrNumber.trim() || !phoneNumber.trim() || isSubmittingUTR || !!validationError}
                         className={`w-full py-5 rounded-2xl font-bold shadow-xl transition-all flex items-center justify-center gap-3 group disabled:opacity-50 ${
-                          submissionStatus === 'success' ? 'bg-green-500 text-white shadow-green-200' : 'bg-primary text-white shadow-primary/30 hover:bg-primary-dark'
+                          submissionStatus === 'success' ? 'bg-green-500 text-white shadow-green-200' : 'bg-blue-600 text-white shadow-primary/30 hover:bg-blue-800'
                         }`}
                       >
                         {isSubmittingUTR ? (
