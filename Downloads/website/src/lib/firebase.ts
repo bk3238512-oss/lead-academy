@@ -28,3 +28,4 @@ export const signInWithGoogle = () =>
   signInWithPopup(auth, provider);
 
 export { RecaptchaVerifier, signInWithPhoneNumber };
+export const logout = () => auth.signOut();
