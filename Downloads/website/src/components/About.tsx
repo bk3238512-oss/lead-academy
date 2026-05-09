@@ -76,7 +76,7 @@ export default function About() {
             </div>
             <div className="space-y-4 pt-8">
               <div className="rounded-3xl overflow-hidden h-64 border-4 border-white shadow-lg">
-                <img src="/ncert-books.jpg" alt="NCERT & Competitive Exam Books" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                <img src="/ncert-books.jpeg" alt="NCERT & Competitive Exam Books" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
               </div>
               <div className="bg-blue-600 p-6 rounded-3xl text-white shadow-lg shadow-primary/30">
                 <div className="text-3xl font-bold mb-1">NCERT</div>
