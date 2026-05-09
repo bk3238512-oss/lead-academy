@@ -131,70 +131,59 @@ export default function CourseDetail({ onBack }: CourseDetailProps) {
   };
 
   const handleSubmitUTR = async () => {
-    setValidationError(null);
-    
-    if (!user || !utrNumber.trim() || !phoneNumber.trim()) {
-      setValidationError("Mobile and UTR number are required.");
-      return;
-    }
+  setValidationError(null);
 
-    if (utrNumber.trim().length < 12) {
-      setValidationError("Invalid UTR format. Standard UTR is 12-22 digits.");
-      return;
-    }
+  if (!user || !utrNumber.trim() || !phoneNumber.trim()) {
+    setValidationError("Mobile and UTR number are required.");
+    return;
+  }
 
-    if (phoneNumber.trim().length < 10) {
-      setValidationError("Please enter a valid 10-digit mobile number.");
-      return;
-    }
+  if (utrNumber.trim().length < 12) {
+    setValidationError("Invalid UTR format.");
+    return;
+  }
 
-    setIsSubmittingUTR(true);
-    setSubmissionStatus('verifying');
-    
-    try {
-      // 1. Log to our backend server for verification and activation
-      const response = await fetch('/api/verify-payment', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          userId: user.uid,
-          userName: user.displayName || phoneNumber || 'Student',
-          userEmail: user.email || '',
-          utr: utrNumber,
-          phone: phoneNumber,
-          courseId: GK_GS_COURSE.id,
-          amount: amount
-        })
-      });
+  if (phoneNumber.trim().length < 10) {
+    setValidationError("Please enter a valid mobile number.");
+    return;
+  }
 
-      const result = await response.json();
+  setIsSubmittingUTR(true);
 
-      if (!response.ok) {
-        setSubmissionStatus('error');
-        setValidationError(result.error || 'Verification failed. Our team will review manually.');
-        setIsSubmittingUTR(false);
-        return;
-      }
+  try {
+    await setDoc(doc(db, "enrollments", `${user.uid}_${GK_GS_COURSE.id}`), {
+      userId: user.uid,
+      userName: user.displayName || "",
+      userEmail: user.email || "",
+      phone: phoneNumber,
+      utr: utrNumber,
+      courseId: GK_GS_COURSE.id,
+      status: "pending",
+      createdAt: serverTimestamp(),
+    });
 
-      setSubmissionStatus('success');
+    setSubmissionStatus("success");
 
-      // 2. Notify via WhatsApp automatically with the result
-      const message = `🚨 ${result.status === 'verified' ? 'PAYMENT VERIFIED' : 'NEW ENROLLMENT REQUEST'}\n\nCourse: ${GK_GS_COURSE.title}\nAmount: ₹${amount}\n\nStudent Info:\n- Name: ${user.displayName}\n- Mobile: ${phoneNumber}\n- UTR: ${utrNumber}\n\nStatus: ${result.status.toUpperCase()}`;
-      const encodedMsg = encodeURIComponent(message);
-      const whatsappUrl = `https://wa.me/${whatsappNo.replace(/\D/g, '')}?text=${encodedMsg}`;
-      
-      window.open(whatsappUrl, '_blank');
+    const message = `New Enrollment Request
 
-      // The onSnapshot listener in useEffect will handle local state update 
-      // as the server has already updated Firestore.
-    } catch (err: any) {
-      console.error(err);
-      setSubmissionStatus('error');
-      setValidationError("An error occurred during submission. Please try again.");
-    } finally {
-      setIsSubmittingUTR(false);
-    }
-  };
+Name: ${user.displayName}
+Phone: ${phoneNumber}
+UTR: ${utrNumber}
+Course: ${GK_GS_COURSE.title}`;
+
+    const whatsappUrl =
+      `https://wa.me/916200598775?text=${encodeURIComponent(message)}`;
+
+    window.open(whatsappUrl, "_blank");
+
+  } catch (error) {
+    console.error(error);
+    setSubmissionStatus("error");
+    setValidationError("Submission failed. Please try again.");
+  } finally {
+    setIsSubmittingUTR(false);
+  }
+};
 
   // Load comments
   useEffect(() => {
