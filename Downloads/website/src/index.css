@@ -15,26 +15,67 @@
 
 @layer base {
   body {
-    @apply bg-app-bg text-app-text font-sans antialiased;
+    background-color: var(--color-app-bg);
+    color: var(--color-app-text);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-serif font-bold text-primary-dark;
+    font-family: var(--font-serif);
+    font-weight: 700;
+    color: var(--color-primary-dark);
   }
 }
 
 .glass-card {
-  @apply bg-white/80 backdrop-blur-sm border border-white/20 shadow-sm rounded-2xl;
+  background-color: rgba(255,255,255,0.8);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+  border-radius: 1rem;
 }
 
 .btn-primary {
-  @apply bg-primary hover:bg-primary-dark text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 shadow-lg shadow-primary/20 active:scale-95;
+  background-color: var(--color-primary);
+  color: #fff;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  transition: all 200ms ease;
+  box-shadow: 0 10px 15px -3px rgba(30,64,175,0.2);
+}
+.btn-primary:hover {
+  background-color: var(--color-primary-dark);
+}
+.btn-primary:active {
+  transform: scale(0.95);
 }
 
 .btn-secondary {
-  @apply bg-secondary hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 shadow-lg shadow-secondary/20 active:scale-95;
+  background-color: var(--color-secondary);
+  color: #fff;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  transition: all 200ms ease;
+  box-shadow: 0 10px 15px -3px rgba(220,38,38,0.2);
+}
+.btn-secondary:hover {
+  background-color: #b91c1c; /* red-700 */
+}
+.btn-secondary:active {
+  transform: scale(0.95);
 }
 
 .section-container {
-  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20;
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
 }
