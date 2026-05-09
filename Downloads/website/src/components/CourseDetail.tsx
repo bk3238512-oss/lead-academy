@@ -77,6 +77,9 @@ export default function CourseDetail({ onBack }: CourseDetailProps) {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [isVideoLoading, setIsVideoLoading] = useState(true);
   const playerRef = useRef<any>(null);
+  useEffect(() => {
+    setIsVideoLoading(true);
+  }, [activeVideo]);
 
   const handleVideoEnd = () => {
     const currentIndex = GK_GS_COURSE.videos.findIndex(v => v.url === activeVideo.url);
@@ -269,23 +272,16 @@ Course: ${GK_GS_COURSE.title}`;
             <div className="relative aspect-video bg-black rounded-3xl overflow-hidden shadow-2xl group">
               {enrollmentStatus === 'verified' ? (
                 <>
-                  <ReactPlayer
-                    ref={playerRef}
-                    url={activeVideo.url}
+                  <iframe
                     width="100%"
-                    height="100%"
-                    controls
-                    playing
-                    onReady={() => setIsVideoLoading(false)}
-                    onStart={() => setIsVideoLoading(false)}
-                    onBuffer={() => setIsVideoLoading(true)}
-                    onBufferEnd={() => setIsVideoLoading(false)}
-                    onEnded={handleVideoEnd}
-                    config={{
-                      youtube: {
-                        rel: 0
-                      }
-                    }}
+                    height="500"
+                    src={`https://www.youtube.com/embed/${activeVideo.url.split('v=')[1]}`}
+                    title={activeVideo.title}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="rounded-2xl"
+                    onLoad={() => setIsVideoLoading(false)}
                   />
                   
                   {/* Custom Loading Overlay */}

@@ -83,11 +83,10 @@ export default function Hero() {
             className="hidden lg:block relative"
           >
             <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-8 border-white aspect-[4/5]">
-              <img 
-                src="https://images.unsplash.com/photo-1544717297-fa154da09f5b?q=80&w=2070&auto=format&fit=crop" 
-                alt="Suman Patel Sir" 
-                className="w-full h-full object-cover"
-                referrerPolicy="no-referrer"
+              <img
+                src="/suman.png"
+                alt="Suman Patel Sir"
+                className="w-full h-full object-cover rounded-3xl"
               />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-primary p-8">
                 <div className="text-white">
