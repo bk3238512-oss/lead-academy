@@ -1,38 +1,10 @@
-import { initializeApp } from "firebase/app";
-import {
-  getAuth,
-  GoogleAuthProvider,
-  signInWithPopup,
-  RecaptchaVerifier,
-  signInWithPhoneNumber,
-  signOut,
-} from "firebase/auth";
-
-import { getFirestore } from "firebase/firestore";
-
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID",
+  apiKey: "AIzaSyA9CX6QsvzGEh-nA0Idiw_LwqCH2HNYwa0",
+  authDomain: "lead-academy-d9705.firebaseapp.com",
+  projectId: "lead-academy-d9705",
+  storageBucket: "lead-academy-d9705.firebasestorage.app",
+  messagingSenderId: "1090312998956",
+  appId: "1:1090312998956:web:70bd9bd689ffe231e9c189",
+  measurementId: "G-57LGDBE9T4"
 };
-
-const app = initializeApp(firebaseConfig);
-
-export const auth = getAuth(app);
-export const db = getFirestore(app);
-
-const provider = new GoogleAuthProvider();
-
-export const signInWithGoogle = () =>
-  signInWithPopup(auth, provider);
-
-export const logout = () => signOut(auth);
-
-export {
-  RecaptchaVerifier,
-  signInWithPhoneNumber,
-};
-
