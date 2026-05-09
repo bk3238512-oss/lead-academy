@@ -89,9 +89,9 @@ export default function Hero() {
                 className="w-full h-full object-cover rounded-3xl"
               />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-primary p-8">
-                <div className="text-white">
+                <div className="text-red">
                   <div className="text-2xl font-bold font-serif">Suman Patel Sir</div>
-                  <div className="text-blue-200 uppercase tracking-widest text-sm font-semibold">Founder & Lead Mentor</div>
+                  <div className="text-yellow-200 uppercase tracking-widest text-sm font-semibold">Founder & Lead Mentor</div>
                 </div>
               </div>
             </div>

@@ -68,15 +68,15 @@ export default function About() {
           >
             <div className="space-y-4">
               <div className="rounded-3xl overflow-hidden h-48 border-4 border-white shadow-lg">
-                <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2070&auto=format&fit=crop" alt="Classroom 1" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                <img src="/classroom1.jpg" alt="Classroom 1" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
               </div>
               <div className="rounded-3xl overflow-hidden h-64 border-4 border-white shadow-lg">
-                <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=2073&auto=format&fit=crop" alt="Classroom 2" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                <img src="/classroom2.jpg" alt="Classroom 2" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
               </div>
             </div>
             <div className="space-y-4 pt-8">
               <div className="rounded-3xl overflow-hidden h-64 border-4 border-white shadow-lg">
-                <img src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?q=80&w=2070&auto=format&fit=crop" alt="NCERT & Competitive Exam Books" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                <img src="/ncert-books.jpg" alt="NCERT & Competitive Exam Books" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
               </div>
               <div className="bg-blue-600 p-6 rounded-3xl text-white shadow-lg shadow-primary/30">
                 <div className="text-3xl font-bold mb-1">NCERT</div>

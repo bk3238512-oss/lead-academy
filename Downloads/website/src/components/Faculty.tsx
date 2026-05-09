@@ -3,12 +3,20 @@ import { motion } from 'motion/react';
 import { Star, Quote } from 'lucide-react';
 
 const faculty = [
-  { name: 'Suman Patel Sir', role: 'Lead Mentor - BPSC & UPSC', image: 'https://images.unsplash.com/photo-1544717297-fa154da09f5b?q=80&w=2070&auto=format&fit=crop' },
+  { name: 'Suman Patel Sir', role: 'Lead Mentor - BPSC & UPSC', image: "/suman.png" },
 ];
 
 const testimonials = [
-  { name: 'Rahul Kumar', success: 'Selected in BPSC 67th', quote: 'The mentorship of Suman Sir was a game changer for my preparation. The test series is highly relevant.' },
-  { name: 'Priya Singh', success: 'SSC CGL Selection', quote: 'Affordable and quality education. The Hindi medium support helped me tremendously.' },
+  {
+    name: 'Anita Kumari',
+    success: 'Selected in BPSC 67',
+    quote: 'The guidance and mentorship here transformed my preparation and gave me the confidence to succeed.',
+  },
+  {
+    name: 'Rohit Verma',
+    success: 'Cleared UPSC Prelims',
+    quote: 'Structured lessons and regular feedback made all the difference in my journey.',
+  },
 ];
 
 export default function Faculty() {
