@@ -13,7 +13,6 @@ import { auth } from '../lib/firebase';
 // which caused "only refers to a type" errors when used as a value. Use a local
 // runtime object to ensure the component has course data at runtime.
 import { COURSES } from '../constants/courses';
-import { useParams } from 'react-router-dom';
 import LoginModal from './LoginModal';
 
 enum OperationType {
@@ -63,8 +62,8 @@ function handleFirestoreError(error: unknown, operationType: OperationType, path
   throw new Error(JSON.stringify(errInfo));
 }
 
-export default function CourseDetail() {
-  const { id } = useParams();
+export default function CourseDetail({ id }: any) {
+ 
 
 console.log("URL ID:", id);
 console.log("COURSES:", COURSES);
