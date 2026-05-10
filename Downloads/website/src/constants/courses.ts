@@ -42,3 +42,24 @@ export const GK_GS_COURSE: Course = {
 ]
 
 };
+
+export const NCERT_BATCH: Course = {
+  id: 'ncert-batch',
+  title: 'NCERT Batch',
+  description: 'Complete NCERT Science and History classes for competitive exam preparation.',
+  price: 500,
+  videos: [
+    { title: 'Science Class 1', url: 'https://www.youtube.com/watch?v=pnid_kAlBgU' },
+    { title: 'Science Class 2', url: 'https://www.youtube.com/watch?v=fHDdgOSXtyY' },
+    { title: 'Science Class 3', url: 'https://www.youtube.com/watch?v=Txup7QwneAQ' },
+    { title: 'Science Class 4', url: 'https://www.youtube.com/watch?v=jLt019ELBLI' },
+    { title: 'Science Class 5', url: 'https://www.youtube.com/watch?v=9hAUa1csUsM' },
+    { title: 'Science Class 6', url: 'https://www.youtube.com/watch?v=nxrcFalKIuM' },
+    { title: 'Science Class 7', url: 'https://www.youtube.com/watch?v=aoE6Vq6YVkE' },
+    { title: 'Science Class 8', url: 'https://www.youtube.com/watch?v=1Qklc690SWM' },
+    { title: 'Science Class 9', url: 'https://www.youtube.com/watch?v=l88gqBF-Olk' },
+
+    { title: 'History Class 1', url: 'https://www.youtube.com/watch?v=l88gqBF-Olk' },
+    { title: 'History Class 2', url: 'https://www.youtube.com/watch?v=BiF9htIGUDw' }
+  ]
+};
