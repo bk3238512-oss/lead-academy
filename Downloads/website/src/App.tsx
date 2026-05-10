@@ -3,46 +3,48 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState } from 'react';
+import React from 'react';
+// lightweight internal routing to avoid dependency on react-router-dom
+
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
 import Courses from './components/Courses';
 import Features from './components/Features';
 import Faculty from './components/Faculty';
-import Results from './components/Results';
-import YouTube from './components/YouTube';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import WhatsAppButton from './components/WhatsAppButton';
 import CourseDetail from './components/CourseDetail';
 
-export default function App() {
-  const [view, setView] = useState<'home' | 'course-detail'>('home');
+function Home() {
+  return (
+    <>
+      <Header />
+      <Hero />
+      <About />
+      <Courses />
+      <Features />
+      <Faculty />
+      <Contact />
+      <Footer />
+    </>
+  );
+}
 
-  if (view === 'course-detail') {
-    return (
-      <div className="min-h-screen">
-        <CourseDetail onBack={() => setView('home')} />
-      </div>
-    );
+export default function App() {
+  const [path, setPath] = React.useState(window.location.pathname);
+
+  React.useEffect(() => {
+    const onPop = () => setPath(window.location.pathname);
+    window.addEventListener('popstate', onPop);
+    return () => window.removeEventListener('popstate', onPop);
+  }, []);
+
+  if (path.startsWith('/course/')) {
+    const id = decodeURIComponent(path.replace('/course/', ''));
+    const C = CourseDetail as any;
+    return <C id={id} />;
   }
 
-  return (
-    <div className="min-h-screen">
-      <Header />
-      <main>
-        <Hero />
-        <About />
-        <Features />
-        <Results />
-        <Courses onCourseSelect={() => setView('course-detail')} />
-        <YouTube />
-        <Faculty />
-        <Contact />
-      </main>
-      <Footer />
-      <WhatsAppButton />
-    </div>
-  );
+  return <Home />;
 }
