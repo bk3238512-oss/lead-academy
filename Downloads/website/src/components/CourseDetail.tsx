@@ -59,11 +59,10 @@ function handleFirestoreError(error: unknown, operationType: OperationType, path
   throw new Error(JSON.stringify(errInfo));
 }
 
-interface CourseDetailProps {
-  onBack: () => void;
-}
-
-export default function CourseDetail({ onBack }: CourseDetailProps) {
+export default function CourseDetail() {
+  // Avoid depending on react-router-dom to prevent module resolution errors in some environments.
+  // Use window.history as a lightweight fallback for navigating back.
+  const onBack = () => window.history.back();
   const { user } = useAuth();
   const [enrollmentStatus, setEnrollmentStatus] = useState<'none' | 'pending' | 'verified'>('none');
   const [activeVideo, setActiveVideo] = useState(GK_GS_COURSE.videos[0]);
@@ -89,7 +88,7 @@ export default function CourseDetail({ onBack }: CourseDetailProps) {
   };
 
   const upiId = 'srdr009546@okicici';
-  const amount = 1;
+  const amount = 499;
   const whatsappNo = '+916200598775';
 
   // Check enrollment status
