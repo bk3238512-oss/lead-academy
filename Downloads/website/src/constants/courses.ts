@@ -63,3 +63,7 @@ export const NCERT_BATCH: Course = {
     { title: 'History Class 2', url: 'https://www.youtube.com/watch?v=BiF9htIGUDw' }
   ]
 };
+export const COURSES = [
+  GK_GS_COURSE,
+  NCERT_BATCH
+];

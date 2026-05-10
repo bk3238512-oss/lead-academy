@@ -9,7 +9,11 @@ import { db } from '../lib/firebase';
 import { collection, addDoc, query, where, onSnapshot, orderBy, doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
 // @ts-ignore: may not be present in all environments
 import { auth } from '../lib/firebase';
-import { GK_GS_COURSE } from '../constants/courses';
+// Provide a fallback course object. The original import referred to a type named `Course`
+// which caused "only refers to a type" errors when used as a value. Use a local
+// runtime object to ensure the component has course data at runtime.
+import { COURSES } from '../constants/courses';
+import { useParams } from 'react-router-dom';
 import LoginModal from './LoginModal';
 
 enum OperationType {
@@ -60,12 +64,19 @@ function handleFirestoreError(error: unknown, operationType: OperationType, path
 }
 
 export default function CourseDetail() {
+  const { id } = useParams();
+
+const course = COURSES.find((c: any) => c.id === id);
+
+if (!course) {
+  return <div>Course not found</div>;
+}
   // Avoid depending on react-router-dom to prevent module resolution errors in some environments.
   // Use window.history as a lightweight fallback for navigating back.
   const onBack = () => window.history.back();
   const { user } = useAuth();
   const [enrollmentStatus, setEnrollmentStatus] = useState<'none' | 'pending' | 'verified'>('none');
-  const [activeVideo, setActiveVideo] = useState(GK_GS_COURSE.videos[0]);
+  const [activeVideo, setActiveVideo] = useState(course.videos[0]);
   const [comments, setComments] = useState<any[]>([]);
   const [newComment, setNewComment] = useState('');
   const [utrNumber, setUtrNumber] = useState('');
@@ -81,9 +92,9 @@ export default function CourseDetail() {
   }, [activeVideo]);
 
   const handleVideoEnd = () => {
-    const currentIndex = GK_GS_COURSE.videos.findIndex(v => v.url === activeVideo.url);
-    if (currentIndex < GK_GS_COURSE.videos.length - 1) {
-      setActiveVideo(GK_GS_COURSE.videos[currentIndex + 1]);
+    const currentIndex = course.videos.findIndex((v: any) => v.url === activeVideo.url);
+    if (currentIndex < course.videos.length - 1) {
+      setActiveVideo(course.videos[currentIndex + 1]);
     }
   };
 
@@ -94,7 +105,7 @@ export default function CourseDetail() {
   // Check enrollment status
   useEffect(() => {
     if (!user) return;
-    const enrollmentId = `${user.uid}_${GK_GS_COURSE.id}`;
+    const enrollmentId = `${user.uid}_${course.id}`;
     const path = `enrollments/${enrollmentId}`;
     const unsub = onSnapshot(doc(db, 'enrollments', enrollmentId), (doc) => {
       if (doc.exists()) {
@@ -153,13 +164,13 @@ export default function CourseDetail() {
   setIsSubmittingUTR(true);
 
   try {
-    await setDoc(doc(db, "enrollments", `${user.uid}_${GK_GS_COURSE.id}`), {
+    await setDoc(doc(db, "enrollments", `${user.uid}_${course.id}`), {
       userId: user.uid,
       userName: user.displayName || "",
       userEmail: user.email || "",
       phone: phoneNumber,
       utr: utrNumber,
-      courseId: GK_GS_COURSE.id,
+      courseId: course.id,
       status: "pending",
       createdAt: serverTimestamp(),
     });
@@ -171,7 +182,7 @@ export default function CourseDetail() {
 Name: ${user.displayName}
 Phone: ${phoneNumber}
 UTR: ${utrNumber}
-Course: ${GK_GS_COURSE.title}`;
+Course: ${course.title}`;
 
     const whatsappUrl =
       `https://wa.me/916200598775?text=${encodeURIComponent(message)}`;
@@ -190,9 +201,9 @@ Course: ${GK_GS_COURSE.title}`;
   // Load comments
   useEffect(() => {
     if (enrollmentStatus !== 'verified') return;
-    const path = `courses/${GK_GS_COURSE.id}/comments`;
+    const path = `courses/${course.id}/comments`;
     const q = query(
-      collection(db, 'courses', GK_GS_COURSE.id, 'comments'),
+      collection(db, 'courses', course.id, 'comments'),
       orderBy('createdAt', 'desc')
     );
     const unsub = onSnapshot(q, (snapshot) => {
@@ -201,14 +212,14 @@ Course: ${GK_GS_COURSE.title}`;
       handleFirestoreError(error, OperationType.LIST, path);
     });
     return unsub;
-  }, [enrollmentStatus, GK_GS_COURSE.id]);
+  }, [enrollmentStatus, course.id]);
 
   const handleSubmitComment = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!user || !newComment.trim()) return;
-    const path = `courses/${GK_GS_COURSE.id}/comments`;
+    const path = `courses/${course.id}/comments`;
     try {
-      await addDoc(collection(db, 'courses', GK_GS_COURSE.id, 'comments'), {
+      await addDoc(collection(db, 'courses', course.id, 'comments'), {
         userId: user.uid,
         userName: user.displayName,
         userPhoto: user.photoURL,
@@ -256,7 +267,7 @@ Course: ${GK_GS_COURSE.title}`;
           </button>
           <div className="flex items-center gap-3">
              <div className="bg-blue-600/5 px-4 py-2 rounded-xl">
-               <span className="text-blue-700 font-bold text-sm tracking-tight">{GK_GS_COURSE.title}</span>
+               <span className="text-blue-700 font-bold text-sm tracking-tight">{course.title}</span>
              </div>
           </div>
           <div className="w-10"></div>
@@ -327,8 +338,8 @@ Course: ${GK_GS_COURSE.title}`;
 
             {/* Video Info */}
             <div className="bg-white rounded-3xl p-8 shadow-lg">
-              <h1 className="text-3xl font-bold mb-4">{GK_GS_COURSE.title}</h1>
-              <p className="text-gray-500 leading-relaxed max-w-2xl">{GK_GS_COURSE.description}</p>
+              <h1 className="text-3xl font-bold mb-4">{course.title}</h1>
+              <p className="text-gray-500 leading-relaxed max-w-2xl">{course.description}</p>
               
               <div className="mt-8 pt-8 border-t flex flex-wrap gap-6">
                 <div className="flex items-center gap-3">
@@ -345,7 +356,7 @@ Course: ${GK_GS_COURSE.title}`;
                     <Play size={24} />
                   </div>
                    <div>
-                    <div className="font-bold">{GK_GS_COURSE.videos.length} Lectures</div>
+                    <div className="font-bold">{course.videos.length} Lectures</div>
                     <div className="text-xs text-gray-500 uppercase font-bold tracking-wider">Full Playlist</div>
                   </div>
                 </div>
@@ -418,10 +429,10 @@ Course: ${GK_GS_COURSE.title}`;
               <div className="bg-white rounded-3xl shadow-lg overflow-hidden flex flex-col h-[800px] sticky top-32">
                 <div className="p-6 bg-blue-600 text-white">
                   <h3 className="font-bold text-xl mb-1">Course Content</h3>
-                  <p className="text-blue-100 text-xs font-bold uppercase tracking-widest">{GK_GS_COURSE.videos.length} Total Lessons</p>
+                  <p className="text-blue-100 text-xs font-bold uppercase tracking-widest">{course.videos.length} Total Lessons</p>
                 </div>
                 <div className="flex-1 overflow-y-auto p-4 space-y-2">
-                  {GK_GS_COURSE.videos.map((video, idx) => (
+                  {course.videos.map((video: any, idx: number) => (
                     <button
                       key={idx}
                       onClick={() => {

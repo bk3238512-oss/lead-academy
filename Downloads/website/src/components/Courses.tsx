@@ -84,5 +84,3 @@ const handleEnrollClick = (courseName: string) => {
     </section>
   );
 }
-
-export default Courses;
