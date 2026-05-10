@@ -6,7 +6,7 @@ import LoginModal from './LoginModal';
 
 const courses = [
   { id: 1, name: 'gk-gs-mastery', icon: ShieldCheck, studentsCount: '1,200+' },
-  { id: 2, name: 'Ncert-batch', icon: Target, studentsCount: '2,500+' },
+  { id: 2, name: 'ncert-batch', icon: Target, studentsCount: '2,500+' },
   { id: 3, name: 'History Complete Batch', icon: Zap, studentsCount: '3,000+' },
   { id: 4, name: 'polity-batch', icon: BookOpen, studentsCount: '1,800+' },
   { id: 5, name: 'lucent-batch', icon: Laptop, studentsCount: '2,000+' },
