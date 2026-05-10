@@ -15,7 +15,7 @@ export const GK_GS_COURSE: Course = {
   id: 'gk-gs-mastery',
   title: 'G.K. & G.S. Mastery Batch',
   description: 'Comprehensive coverage of General Knowledge and General Studies for BPSC, UPSC, and semi-govt exams.',
-  price: 1,
+  price: 499,
   videos: [
   { title: 'G.K. & G.S. Session 1', url: 'https://www.youtube.com/watch?v=1Kywj6czbdc' },
   { title: 'G.K. & G.S. Session 2', url: 'https://www.youtube.com/watch?v=L-pBarB5GpQ' },

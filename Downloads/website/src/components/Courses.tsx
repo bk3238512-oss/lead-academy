@@ -5,31 +5,31 @@ import { useAuth } from '../contexts/AuthContext';
 import LoginModal from './LoginModal';
 
 const courses = [
-  { id: 1, name: 'UPSC Preparation', icon: ShieldCheck, studentsCount: '1,200+' },
-  { id: 2, name: 'BPSC Preparation', icon: Target, studentsCount: '2,500+' },
-  { id: 3, name: 'SSC Coaching', icon: Zap, studentsCount: '3,000+' },
-  { id: 4, name: 'Banking Exams', icon: Database, studentsCount: '1,800+' },
-  { id: 5, name: 'Railway Exams', icon: Laptop, studentsCount: '2,000+' },
+  { id: 1, name: 'gk-gs-mastery', icon: ShieldCheck, studentsCount: '1,200+' },
+  { id: 2, name: 'Ncert-batch', icon: Target, studentsCount: '2,500+' },
+  { id: 3, name: 'History Complete Batch', icon: Zap, studentsCount: '3,000+' },
+  { id: 4, name: 'polity-batch', icon: BookOpen, studentsCount: '1,800+' },
+  { id: 5, name: 'lucent-batch', icon: Laptop, studentsCount: '2,000+' },
   { id: 6, name: 'CDS Coaching', icon: BookOpen, studentsCount: '800+' },
-  { id: 7, name: 'Daroga Preparation', icon: ShieldCheck, studentsCount: '1,500+' },
-  { id: 8, name: 'General Exams', icon: Clock, studentsCount: '4,000+' },
+  { id: 7, name: 'Daroga Preparation', icon: BookOpen, studentsCount: '1,500+' },
+  { id: 8, name: 'General Exams', icon: BookOpen, studentsCount: '4,000+' },
 ];
 
 interface CoursesProps {
   onCourseSelect?: () => void;
 }
 
-export default function Courses({ onCourseSelect }: CoursesProps) {
+const Courses: React.FC<CoursesProps> = ({ onCourseSelect }) => {
   const { user } = useAuth();
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
-  const handleEnrollClick = () => {
-    if (!user) {
-      setIsLoginModalOpen(true);
-    } else if (onCourseSelect) {
-      onCourseSelect();
-    }
-  };
+const handleEnrollClick = (courseName: string) => {
+  if (!user) {
+    setIsLoginModalOpen(true);
+  } else {
+    window.location.href = `/course/${courseName}`;
+  }
+};
 
   return (
     <section id="courses" className="bg-white">
@@ -71,7 +71,7 @@ export default function Courses({ onCourseSelect }: CoursesProps) {
               <h3 className="text-xl font-bold mb-2 group-hover:text-blue-700 transition-colors">{course.name}</h3>
               <p className="text-sm text-gray-500 mb-4 font-medium uppercase tracking-wider">{course.studentsCount} Students Enrolled</p>
               <button 
-                onClick={handleEnrollClick}
+                onClick={() => handleEnrollClick(course.name)}
                 className="text-blue-700 font-bold inline-flex items-center gap-2 group-hover:gap-3 transition-all"
               >
                 {user ? 'View Content' : 'Enroll Now'} <BookOpen size={16} />
