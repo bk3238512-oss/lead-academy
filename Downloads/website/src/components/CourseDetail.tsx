@@ -66,8 +66,11 @@ function handleFirestoreError(error: unknown, operationType: OperationType, path
 export default function CourseDetail() {
   const { id } = useParams();
 
+console.log("URL ID:", id);
+console.log("COURSES:", COURSES);
+
 const course = COURSES.find(
-  (c: any) => c.id.toLowerCase() === String(id).toLowerCase()
+  (c: any) => c.id === id
 );
 
 if (!course) {
@@ -287,7 +290,8 @@ Course: ${course.title}`;
                   <iframe
                     width="100%"
                     height="500"
-                    src={`https://www.youtube.com/embed/${activeVideo.url.split('v=')[1]}`}
+                    src={`https://www.youtube.com/embed/${ activeVideo.url.split('v=')[1]?.split('&')[0]
+}`}
                     title={activeVideo.title}
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
