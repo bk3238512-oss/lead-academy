@@ -66,7 +66,9 @@ function handleFirestoreError(error: unknown, operationType: OperationType, path
 export default function CourseDetail() {
   const { id } = useParams();
 
-const course = COURSES.find((c: any) => c.id === id);
+const course = COURSES.find(
+  (c: any) => c.id.toLowerCase() === String(id).toLowerCase()
+);
 
 if (!course) {
   return <div>Course not found</div>;
