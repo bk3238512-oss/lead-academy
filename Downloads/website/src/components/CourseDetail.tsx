@@ -27,6 +27,33 @@ export default function CourseDetail({ id }: any) {
 
   const [isEnrolled, setIsEnrolled] = useState(false);
 
+  // CHECK APPROVAL STATUS
+  useEffect(() => {
+
+    if (!phoneNumber) return;
+
+    const q = query(
+      collection(db, 'enrollments'),
+      where('courseId', '==', id),
+      where('status', '==', 'approved'),
+      where('phoneNumber', '==', phoneNumber)
+    );
+
+    const unsub = onSnapshot(q, (snapshot) => {
+
+      if (!snapshot.empty) {
+        setIsEnrolled(true);
+      } else {
+        setIsEnrolled(false);
+      }
+
+    });
+
+    return () => unsub();
+
+  }, [id, phoneNumber]);
+
+  // LOAD VIDEOS
   useEffect(() => {
 
     const q = query(
@@ -53,6 +80,7 @@ export default function CourseDetail({ id }: any) {
 
   }, [id]);
 
+  // SUBMIT PAYMENT
   const handleSubmitPayment = async () => {
 
     try {
@@ -101,6 +129,8 @@ export default function CourseDetail({ id }: any) {
 
       <div className="grid lg:grid-cols-3 gap-8">
 
+        {/* VIDEO PLAYER */}
+
         <div className="lg:col-span-2">
 
           {isEnrolled ? (
@@ -126,6 +156,8 @@ export default function CourseDetail({ id }: any) {
                 Pay ₹{course.price} to unlock this course.
               </p>
 
+              {/* QR IMAGE */}
+
               <div className="bg-gray-100 rounded-2xl p-6 mb-6">
 
                 <img
@@ -140,6 +172,8 @@ export default function CourseDetail({ id }: any) {
 
               </div>
 
+              {/* PHONE */}
+
               <input
                 type="text"
                 placeholder="Your Phone Number"
@@ -148,6 +182,8 @@ export default function CourseDetail({ id }: any) {
                 className="w-full p-4 border rounded-2xl mb-4"
               />
 
+              {/* TRANSACTION ID */}
+
               <input
                 type="text"
                 placeholder="UPI Transaction ID"
@@ -155,6 +191,8 @@ export default function CourseDetail({ id }: any) {
                 onChange={(e) => setTransactionId(e.target.value)}
                 className="w-full p-4 border rounded-2xl mb-4"
               />
+
+              {/* SUBMIT */}
 
               <button
                 onClick={handleSubmitPayment}
@@ -168,6 +206,8 @@ export default function CourseDetail({ id }: any) {
           )}
 
         </div>
+
+        {/* VIDEO LIST */}
 
         <div className="bg-white rounded-2xl p-4 space-y-4">
 
