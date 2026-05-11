@@ -13,6 +13,7 @@ import CourseDetail from './components/CourseDetail';
 import AdminDashboard from './components/AdminDashboard';
 
 function Home() {
+
   return (
     <>
       <Header />
@@ -25,21 +26,24 @@ function Home() {
       <Footer />
     </>
   );
+
 }
 
 export default function App() {
 
-  const [path, setPath] = React.useState(window.location.pathname);
+  const [path, setPath] = React.useState(
+    window.location.pathname
+  );
 
   React.useEffect(() => {
 
-    const onPop = () => {
+    const onPop = () =>
       setPath(window.location.pathname);
-    };
 
     window.addEventListener('popstate', onPop);
 
-    return () => window.removeEventListener('popstate', onPop);
+    return () =>
+      window.removeEventListener('popstate', onPop);
 
   }, []);
 
@@ -50,6 +54,7 @@ export default function App() {
     );
 
     return <CourseDetail id={id} />;
+
   }
 
   if (path === '/admin') {
@@ -57,4 +62,5 @@ export default function App() {
   }
 
   return <Home />;
+
 }

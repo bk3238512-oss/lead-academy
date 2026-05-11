@@ -1,10 +1,13 @@
+// src/components/CourseDetail.tsx
+
 import React, { useEffect, useState } from 'react';
 
 import {
   collection,
   query,
   where,
-  onSnapshot
+  onSnapshot,
+  addDoc
 } from 'firebase/firestore';
 
 import { db } from '../lib/firebase';
@@ -19,7 +22,9 @@ export default function CourseDetail({ id }: any) {
   const [videos, setVideos] = useState<any[]>([]);
   const [activeVideo, setActiveVideo] = useState<any>(null);
 
-  const [utr, setUtr] = useState('');
+  const [transactionId, setTransactionId] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+
   const [isEnrolled, setIsEnrolled] = useState(false);
 
   useEffect(() => {
@@ -48,9 +53,37 @@ export default function CourseDetail({ id }: any) {
 
   }, [id]);
 
-  const handleSubmitUTR = async () => {
+  const handleSubmitPayment = async () => {
 
-    alert('Payment submitted. Wait for admin approval.');
+    try {
+
+      await addDoc(
+        collection(db, 'enrollments'),
+        {
+          courseId: id,
+          courseTitle: course?.title,
+          transactionId,
+          phoneNumber,
+          status: 'pending',
+          createdAt: new Date()
+        }
+      );
+
+      const whatsappMessage =
+        `Hello Sir, I have paid for ${course?.title}. Transaction ID: ${transactionId}`;
+
+      window.open(
+        `https://wa.me/916200598775?text=${encodeURIComponent(whatsappMessage)}`,
+        '_blank'
+      );
+
+      alert('Payment submitted successfully');
+
+    } catch (error) {
+
+      alert('Error submitting payment');
+
+    }
 
   };
 
@@ -89,17 +122,19 @@ export default function CourseDetail({ id }: any) {
                 Premium Course
               </h2>
 
-              <p className="mb-6">
-                Purchase this course to continue watching.
+              <p className="mb-4">
+                Pay ₹{course.price} to unlock this course.
               </p>
 
               <div className="bg-gray-100 rounded-2xl p-6 mb-6">
 
-                <p className="text-xl font-bold">
-                  UPI ID
-                </p>
+                <img
+                  src="/upi.png"
+                  alt="UPI QR"
+                  className="w-full max-w-md mx-auto rounded-2xl"
+                />
 
-                <p className="text-2xl text-blue-700 font-black">
+                <p className="text-2xl text-blue-700 font-black mt-4">
                   srdr009546@okicici
                 </p>
 
@@ -107,14 +142,22 @@ export default function CourseDetail({ id }: any) {
 
               <input
                 type="text"
-                placeholder="Enter UTR Number"
-                value={utr}
-                onChange={(e) => setUtr(e.target.value)}
+                placeholder="Your Phone Number"
+                value={phoneNumber}
+                onChange={(e) => setPhoneNumber(e.target.value)}
+                className="w-full p-4 border rounded-2xl mb-4"
+              />
+
+              <input
+                type="text"
+                placeholder="UPI Transaction ID"
+                value={transactionId}
+                onChange={(e) => setTransactionId(e.target.value)}
                 className="w-full p-4 border rounded-2xl mb-4"
               />
 
               <button
-                onClick={handleSubmitUTR}
+                onClick={handleSubmitPayment}
                 className="bg-blue-600 text-white px-8 py-4 rounded-2xl font-bold"
               >
                 Submit Payment
