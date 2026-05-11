@@ -1,10 +1,4 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-
 import React from 'react';
-// lightweight internal routing to avoid dependency on react-router-dom
 
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -14,7 +8,9 @@ import Features from './components/Features';
 import Faculty from './components/Faculty';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+
 import CourseDetail from './components/CourseDetail';
+import AdminDashboard from './components/AdminDashboard';
 
 function Home() {
   return (
@@ -32,18 +28,32 @@ function Home() {
 }
 
 export default function App() {
+
   const [path, setPath] = React.useState(window.location.pathname);
 
   React.useEffect(() => {
-    const onPop = () => setPath(window.location.pathname);
+
+    const onPop = () => {
+      setPath(window.location.pathname);
+    };
+
     window.addEventListener('popstate', onPop);
+
     return () => window.removeEventListener('popstate', onPop);
+
   }, []);
 
   if (path.startsWith('/course/')) {
-    const id = decodeURIComponent(path.replace('/course/', ''));
-    const C = CourseDetail as any;
-    return <C id={id} />;
+
+    const id = decodeURIComponent(
+      path.replace('/course/', '')
+    );
+
+    return <CourseDetail id={id} />;
+  }
+
+  if (path === '/admin') {
+    return <AdminDashboard />;
   }
 
   return <Home />;
