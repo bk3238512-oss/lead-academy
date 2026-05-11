@@ -195,6 +195,14 @@ export default function AdminDashboard() {
 
           <input
             type="text"
+            placeholder="Course ID"
+            value={courseId}
+            onChange={(e) => setCourseId(e.target.value)}
+            className="w-full p-4 border rounded-2xl"
+          />
+
+          <input
+            type="text"
             placeholder="PDF Title"
             value={pdfTitle}
             onChange={(e) => setPdfTitle(e.target.value)}
@@ -271,6 +279,29 @@ export default function AdminDashboard() {
               </div>
 
             ))}
+
+          </div>
+
+        </div>
+
+        {/* COURSE IDS */}
+
+        <div className="bg-yellow-100 p-6 rounded-2xl">
+
+          <h2 className="text-2xl font-bold mb-4">
+            Available Course IDs
+          </h2>
+
+          <div className="space-y-2 font-bold">
+
+            <p>gk-gs-mastery</p>
+            <p>ncert-batch</p>
+            <p>history-complete-batch</p>
+            <p>polity-batch</p>
+            <p>lucent-batch</p>
+            <p>cds-coaching</p>
+            <p>daroga-preparation</p>
+            <p>general-exams</p>
 
           </div>
 
