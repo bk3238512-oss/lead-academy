@@ -8,7 +8,7 @@ const navLinks = [
   { name: 'Home', href: '#home' },
   { name: 'About', href: '#about' },
   { name: 'Courses', href: '#courses' },
-  { name: 'YouTube', href: '#youtube' },
+  { name: 'YouTube', href: 'https://www.youtube.com/@leadacademypatnaby-sumanpa4179' },
   { name: 'Faculty', href: '#faculty' },
   { name: 'Contact', href: '#contact' },
 ];

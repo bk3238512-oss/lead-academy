@@ -1,66 +1,98 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
 import Courses from './components/Courses';
-import Features from './components/Features';
-import Faculty from './components/Faculty';
-import Contact from './components/Contact';
 import Footer from './components/Footer';
 
 import CourseDetail from './components/CourseDetail';
 import AdminDashboard from './components/AdminDashboard';
 
-function Home() {
-
-  return (
-    <>
-      <Header />
-      <Hero />
-      <About />
-      <Courses />
-      <Features />
-      <Faculty />
-      <Contact />
-      <Footer />
-    </>
-  );
-
-}
+import PrivacyPolicy from './components/PrivacyPolicy';
+import Terms from './components/Terms';
 
 export default function App() {
 
-  const [path, setPath] = React.useState(
+  const [path, setPath] = useState(
     window.location.pathname
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
 
-    const onPop = () =>
+    const handleRoute = () => {
       setPath(window.location.pathname);
+    };
 
-    window.addEventListener('popstate', onPop);
+    window.addEventListener(
+      'popstate',
+      handleRoute
+    );
 
-    return () =>
-      window.removeEventListener('popstate', onPop);
+    return () => {
+      window.removeEventListener(
+        'popstate',
+        handleRoute
+      );
+    };
 
   }, []);
 
-  if (path.startsWith('/course/')) {
-
-    const id = decodeURIComponent(
-      path.replace('/course/', '')
-    );
-
-    return <CourseDetail id={id} />;
-
-  }
+  // ADMIN
 
   if (path === '/admin') {
     return <AdminDashboard />;
   }
 
-  return <Home />;
+  // PRIVACY POLICY
+
+  if (path === '/privacy-policy') {
+    return <PrivacyPolicy />;
+  }
+
+  // TERMS
+
+  if (path === '/terms') {
+    return <Terms />;
+  }
+
+  // COURSE DETAIL
+
+  if (path.startsWith('/course/')) {
+
+    const courseId = path.replace(
+      '/course/',
+      ''
+    );
+
+    return (
+      <CourseDetail id={courseId} />
+    );
+
+  }
+
+  // HOME PAGE
+
+  return (
+
+    <div>
+
+      <Header />
+
+      <Hero />
+
+      <div id="about">
+        <About />
+      </div>
+
+      <div id="courses">
+        <Courses />
+      </div>
+
+      <Footer />
+
+    </div>
+
+  );
 
 }
