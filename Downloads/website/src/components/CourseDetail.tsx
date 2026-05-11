@@ -19,6 +19,9 @@ export default function CourseDetail({ id }: any) {
   const [videos, setVideos] = useState<any[]>([]);
   const [activeVideo, setActiveVideo] = useState<any>(null);
 
+  const [utr, setUtr] = useState('');
+  const [isEnrolled, setIsEnrolled] = useState(false);
+
   useEffect(() => {
 
     const q = query(
@@ -45,6 +48,12 @@ export default function CourseDetail({ id }: any) {
 
   }, [id]);
 
+  const handleSubmitUTR = async () => {
+
+    alert('Payment submitted. Wait for admin approval.');
+
+  };
+
   if (!course) {
     return <div>Course not found</div>;
   }
@@ -61,21 +70,56 @@ export default function CourseDetail({ id }: any) {
 
         <div className="lg:col-span-2">
 
-          {activeVideo ? (
+          {isEnrolled ? (
 
             <iframe
               width="100%"
               height="500"
-              src={`https://www.youtube.com/embed/${activeVideo.url.split('v=')[1]?.split('&')[0]}`}
-              title={activeVideo.title}
+              src={`https://www.youtube.com/embed/${activeVideo?.url.split('v=')[1]?.split('&')[0]}`}
+              title={activeVideo?.title}
               allowFullScreen
               className="rounded-2xl bg-black"
             />
 
           ) : (
 
-            <div className="bg-white rounded-2xl p-10">
-              No videos uploaded yet
+            <div className="bg-white rounded-2xl p-10 text-center">
+
+              <h2 className="text-3xl font-bold text-red-600 mb-4">
+                Premium Course
+              </h2>
+
+              <p className="mb-6">
+                Purchase this course to continue watching.
+              </p>
+
+              <div className="bg-gray-100 rounded-2xl p-6 mb-6">
+
+                <p className="text-xl font-bold">
+                  UPI ID
+                </p>
+
+                <p className="text-2xl text-blue-700 font-black">
+                  srdr009546@okicici
+                </p>
+
+              </div>
+
+              <input
+                type="text"
+                placeholder="Enter UTR Number"
+                value={utr}
+                onChange={(e) => setUtr(e.target.value)}
+                className="w-full p-4 border rounded-2xl mb-4"
+              />
+
+              <button
+                onClick={handleSubmitUTR}
+                className="bg-blue-600 text-white px-8 py-4 rounded-2xl font-bold"
+              >
+                Submit Payment
+              </button>
+
             </div>
 
           )}
