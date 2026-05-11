@@ -14,11 +14,22 @@ import { db } from '../lib/firebase';
 
 export default function AdminDashboard() {
 
+  // VIDEO STATES
+
   const [courseId, setCourseId] = useState('');
   const [title, setTitle] = useState('');
   const [youtubeUrl, setYoutubeUrl] = useState('');
 
+  // PDF STATES
+
+  const [pdfTitle, setPdfTitle] = useState('');
+  const [pdfUrl, setPdfUrl] = useState('');
+
+  // ENROLLMENTS
+
   const [enrollments, setEnrollments] = useState<any[]>([]);
+
+  // LOAD ENROLLMENTS
 
   useEffect(() => {
 
@@ -40,6 +51,8 @@ export default function AdminDashboard() {
 
   }, []);
 
+  // ADD VIDEO
+
   const handleAddVideo = async () => {
 
     try {
@@ -56,7 +69,6 @@ export default function AdminDashboard() {
 
       alert('Video Added Successfully');
 
-      setCourseId('');
       setTitle('');
       setYoutubeUrl('');
 
@@ -67,6 +79,37 @@ export default function AdminDashboard() {
     }
 
   };
+
+  // ADD PDF
+
+  const handleAddPdf = async () => {
+
+    try {
+
+      await addDoc(
+        collection(db, 'notes'),
+        {
+          courseId,
+          title: pdfTitle,
+          pdfUrl,
+          createdAt: new Date()
+        }
+      );
+
+      alert('PDF Added Successfully');
+
+      setPdfTitle('');
+      setPdfUrl('');
+
+    } catch (error) {
+
+      alert('Error adding PDF');
+
+    }
+
+  };
+
+  // APPROVE STUDENT
 
   const approveStudent = async (id: string) => {
 
@@ -95,11 +138,19 @@ export default function AdminDashboard() {
 
       <div className="max-w-5xl mx-auto bg-white rounded-3xl shadow-xl p-8 space-y-10">
 
+        {/* TITLE */}
+
         <h1 className="text-4xl font-black text-blue-700">
           LEAD Academy Admin Panel
         </h1>
 
+        {/* ADD VIDEO */}
+
         <div className="space-y-4">
+
+          <h2 className="text-2xl font-bold">
+            Add Course Video
+          </h2>
 
           <input
             type="text"
@@ -119,7 +170,7 @@ export default function AdminDashboard() {
 
           <input
             type="text"
-            placeholder="YouTube URL"
+            placeholder="YouTube Watch URL"
             value={youtubeUrl}
             onChange={(e) => setYoutubeUrl(e.target.value)}
             className="w-full p-4 border rounded-2xl"
@@ -133,6 +184,41 @@ export default function AdminDashboard() {
           </button>
 
         </div>
+
+        {/* ADD PDF */}
+
+        <div className="space-y-4">
+
+          <h2 className="text-2xl font-bold text-green-700">
+            Add PDF Notes
+          </h2>
+
+          <input
+            type="text"
+            placeholder="PDF Title"
+            value={pdfTitle}
+            onChange={(e) => setPdfTitle(e.target.value)}
+            className="w-full p-4 border rounded-2xl"
+          />
+
+          <input
+            type="text"
+            placeholder="Google Drive PDF Link"
+            value={pdfUrl}
+            onChange={(e) => setPdfUrl(e.target.value)}
+            className="w-full p-4 border rounded-2xl"
+          />
+
+          <button
+            onClick={handleAddPdf}
+            className="w-full bg-green-600 text-white py-4 rounded-2xl font-bold"
+          >
+            Add PDF
+          </button>
+
+        </div>
+
+        {/* PAYMENT REQUESTS */}
 
         <div>
 
@@ -156,15 +242,21 @@ export default function AdminDashboard() {
                   </p>
 
                   <p>
-                    Transaction ID: {student.transactionId}
+                    Transaction ID:
+                    {' '}
+                    {student.transactionId}
                   </p>
 
                   <p>
-                    Phone: {student.phoneNumber}
+                    Phone:
+                    {' '}
+                    {student.phoneNumber}
                   </p>
 
                   <p>
-                    Status: {student.status}
+                    Status:
+                    {' '}
+                    {student.status}
                   </p>
 
                 </div>

@@ -18,6 +18,8 @@ export default function CourseDetail({ id }: any) {
   );
 
   const [videos, setVideos] = useState<any[]>([]);
+  const [notes, setNotes] = useState<any[]>([]);
+
   const [activeVideo, setActiveVideo] = useState<any>(null);
 
   const [transactionId, setTransactionId] = useState('');
@@ -103,7 +105,31 @@ export default function CourseDetail({ id }: any) {
 
   }, [id]);
 
-  // SCREENSHOT BLOCK
+  // LOAD NOTES
+
+  useEffect(() => {
+
+    const q = query(
+      collection(db, 'notes'),
+      where('courseId', '==', id)
+    );
+
+    const unsub = onSnapshot(q, (snapshot) => {
+
+      const firebaseNotes = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data()
+      }));
+
+      setNotes(firebaseNotes);
+
+    });
+
+    return () => unsub();
+
+  }, [id]);
+
+  // SECURITY
 
   useEffect(() => {
 
@@ -208,12 +234,16 @@ export default function CourseDetail({ id }: any) {
 
     <div className="min-h-screen bg-gray-100 p-8">
 
+      {/* BACK BUTTON */}
+
       <button
         onClick={() => window.history.back()}
         className="mb-6 bg-blue-600 text-white px-6 py-3 rounded-2xl font-bold"
       >
         ← Back
       </button>
+
+      {/* TITLE */}
 
       <h1 className="text-4xl font-black mb-8">
         {course.title}
@@ -232,7 +262,10 @@ export default function CourseDetail({ id }: any) {
               height="500"
               src={`https://www.youtube.com/embed/${
                 activeVideo?.url
-                  ?.replace('https://www.youtube.com/watch?v=', '')
+                  ?.replace(
+                    'https://www.youtube.com/watch?v=',
+                    ''
+                  )
                   ?.split('&')[0]
               }`}
               title={activeVideo?.title}
@@ -307,25 +340,54 @@ export default function CourseDetail({ id }: any) {
 
         </div>
 
-        {/* VIDEO LIST */}
+        {/* RIGHT SIDE */}
 
-        <div className="bg-white rounded-2xl p-4 space-y-4">
+        <div className="space-y-6">
 
-          <h2 className="text-2xl font-bold">
-            Course Videos
-          </h2>
+          {/* VIDEOS */}
 
-          {videos.map((video: any, index: number) => (
+          <div className="bg-white rounded-2xl p-4 space-y-4">
 
-            <button
-              key={index}
-              onClick={() => setActiveVideo(video)}
-              className="w-full p-4 bg-gray-100 rounded-2xl text-left hover:bg-blue-100"
-            >
-              {video.title}
-            </button>
+            <h2 className="text-2xl font-bold">
+              Course Videos
+            </h2>
 
-          ))}
+            {videos.map((video: any, index: number) => (
+
+              <button
+                key={index}
+                onClick={() => setActiveVideo(video)}
+                className="w-full p-4 bg-gray-100 rounded-2xl text-left hover:bg-blue-100"
+              >
+                {video.title}
+              </button>
+
+            ))}
+
+          </div>
+
+          {/* NOTES */}
+
+          <div className="bg-white rounded-2xl p-4 space-y-4">
+
+            <h2 className="text-2xl font-bold">
+              PDF Notes
+            </h2>
+
+            {notes.map((note: any, index: number) => (
+
+              <a
+                key={index}
+                href={note.pdfUrl}
+                target="_blank"
+                className="block bg-green-600 text-white p-4 rounded-2xl text-center font-bold"
+              >
+                {note.title}
+              </a>
+
+            ))}
+
+          </div>
 
         </div>
 
