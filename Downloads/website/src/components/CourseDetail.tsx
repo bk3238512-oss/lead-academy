@@ -1,3 +1,5 @@
+// src/components/CourseDetail.tsx
+
 import React, { useEffect, useState } from 'react';
 
 import {
@@ -13,9 +15,13 @@ import { COURSES } from '../constants/courses';
 
 export default function CourseDetail({ id }: any) {
 
+  // FIND COURSE
+
   const course = COURSES.find(
     (c: any) => c.id === id
   );
+
+  // STATES
 
   const [videos, setVideos] = useState<any[]>([]);
   const [notes, setNotes] = useState<any[]>([]);
@@ -88,10 +94,21 @@ export default function CourseDetail({ id }: any) {
 
     const unsub = onSnapshot(q, (snapshot) => {
 
-      const firebaseVideos = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data()
-      }));
+      const firebaseVideos = snapshot.docs
+        .map((doc) => ({
+          id: doc.id,
+          ...doc.data()
+        }))
+        .sort((a: any, b: any) => {
+
+          if (!a.createdAt || !b.createdAt) return 0;
+
+          return (
+            a.createdAt.seconds -
+            b.createdAt.seconds
+          );
+
+        });
 
       setVideos(firebaseVideos);
 
@@ -129,7 +146,7 @@ export default function CourseDetail({ id }: any) {
 
   }, [id]);
 
-  // SECURITY
+  // SECURITY BLOCK
 
   useEffect(() => {
 
@@ -226,6 +243,8 @@ export default function CourseDetail({ id }: any) {
 
   };
 
+  // COURSE NOT FOUND
+
   if (!course) {
     return <div>Course not found</div>;
   }
@@ -251,7 +270,7 @@ export default function CourseDetail({ id }: any) {
 
       <div className="grid lg:grid-cols-3 gap-8">
 
-        {/* VIDEO */}
+        {/* LEFT SIDE */}
 
         <div className="lg:col-span-2">
 
