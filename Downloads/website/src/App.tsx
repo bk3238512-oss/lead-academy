@@ -12,6 +12,9 @@ import AdminDashboard from './components/AdminDashboard';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import Terms from './components/Terms';
 
+import WhatsAppButton from './components/WhatsAppButton';
+import YouTube from './components/YouTube';
+
 export default function App() {
 
   const [path, setPath] = useState(
@@ -88,6 +91,12 @@ export default function App() {
       <div id="courses">
         <Courses />
       </div>
+
+      {/* Floating Buttons */}
+
+      <WhatsAppButton />
+
+      <YouTube />
 
       <Footer />
 
