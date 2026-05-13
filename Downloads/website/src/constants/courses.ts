@@ -5,30 +5,103 @@ export interface Video {
 
 export interface Course {
   id: string;
+
   title: string;
+
   description: string;
+
   price: number;
+
+  duration?: string;
+
+  teacher?: string;
+
+  language?: string;
+
+  lectures?: number;
+
+  thumbnail?: string;
+
+  introVideo?: string;
+
+  benefits?: string[];
+
   videos: Video[];
 }
 
 export const COURSES: Course[] = [
 
-  {
-    id: 'gk-gs-mastery',
-    title: 'G.K. & G.S. Mastery Batch',
-    description: 'GK & GS preparation course',
-    price: 499,
-    videos: []
-  },
+{
+  id: 'gk-gs-mastery',
 
-  {
-    id: 'ncert-batch',
-    title: 'NCERT Batch',
-    description: 'NCERT preparation course',
-    price: 499,
-    videos: []
-  },
+  title: 'G.K. & G.S. All Subject (Lucent + घटना चक्र)',
 
+  description:
+    'Complete G.K. & G.S. preparation with Lucent + घटना चक्र for all competitive exams. PPT, Mind Map and complete study material.',
+
+  price: 499,
+
+  duration: '6 Months',
+
+  teacher: 'Suman Patel Sir',
+
+  language: 'Hindi',
+
+  lectures: 150,
+
+  thumbnail: '/gkgs-thumbnail.png',
+
+  introVideo:
+    'https://youtu.be/_ZN_eQmoD5w?si=xRph_66TY7_UxWOR',
+
+  benefits: [
+    'Live Classes',
+    'PPT & Mind Map',
+    'Lucent + घटना चक्र Notes',
+    'Test Series',
+    'Doubt Support',
+    'PDF Notes',
+  ],
+
+  videos: []
+
+},
+
+{
+  id: 'ncert-batch',
+
+  title: 'NCERT Complete Batch',
+
+  description:
+    'Complete NCERT preparation course for BPSC, UPSC, SSC and all government exams with detailed explanation and notes.',
+
+  price: 499,
+
+  duration: '4 Months',
+
+  teacher: 'Suman Patel Sir',
+
+  language: 'Hindi',
+
+  lectures: 90,
+
+  thumbnail: '/ncert-thumbnail.png',
+
+  introVideo:
+    'https://www.youtube.com/watch?v=BhX6UKxQgfE',
+
+  benefits: [
+    'Complete NCERT Coverage',
+    'Live Classes',
+    'PDF Notes',
+    'Practice Questions',
+    'Test Series',
+    'Doubt Support',
+  ],
+
+  videos: []
+
+},
   {
     id: 'history-complete-batch',
     title: 'History Complete Batch',
@@ -38,17 +111,17 @@ export const COURSES: Course[] = [
   },
 
   {
-    id: 'polity-batch',
-    title: 'Polity Batch',
-    description: 'Indian polity complete course',
+    id: 'biology-batch',
+    title: 'Biology Batch',
+    description: 'Complete biology preparation',
     price: 499,
     videos: []
   },
 
   {
-    id: 'lucent-batch',
-    title: 'Lucent Batch',
-    description: 'Lucent GK preparation',
+    id: 'chemistry-batch',
+    title: 'Chemistry Batch',
+    description: 'Complete chemistry preparation',
     price: 499,
     videos: []
   },
