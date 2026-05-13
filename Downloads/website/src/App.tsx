@@ -95,13 +95,21 @@ export default function App() {
         <Courses />
       </div>
 
-      {/* Floating Buttons */}
+<div id="faculty">
+  <Faculty />
+</div>
 
-      <WhatsAppButton />
+<div id="contact">
+  <Contact />
+</div>
 
-      <YouTube />
+{/* Floating Buttons */}
 
-      <Footer />
+<WhatsAppButton />
+
+<YouTube />
+
+<Footer />
 
     </div>
 
