@@ -1,6 +1,7 @@
 // src/components/CourseDetail.tsx
 
 import React, { useEffect, useState } from 'react';
+import Comments from './Comments';
 
 import {
   collection,
@@ -276,44 +277,41 @@ export default function CourseDetail({ id }: any) {
 
           {isEnrolled ? (
 
-            <div className="bg-black rounded-3xl overflow-hidden shadow-2xl">
+            <><div className="bg-black rounded-3xl overflow-hidden shadow-2xl">
 
-  <div className="relative w-full aspect-video">
+              <div className="relative w-full aspect-video">
 
-    <iframe
-      src={`https://www.youtube.com/embed/${
-        activeVideo?.url
-          ?.replace(
-            'https://www.youtube.com/watch?v=',
-            ''
-          )
-          ?.replace(
-            'https://youtu.be/',
-            ''
-          )
-          ?.split('&')[0]
-      }?rel=0&modestbranding=1&controls=1`}
-      title={activeVideo?.title}
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowFullScreen
-      className="absolute top-0 left-0 w-full h-full"
-    />
+                <iframe
+                  src={`https://www.youtube.com/embed/${activeVideo?.url
+                      ?.replace(
+                        'https://www.youtube.com/watch?v=',
+                        ''
+                      )
+                      ?.replace(
+                        'https://youtu.be/',
+                        ''
+                      )
+                      ?.split('&')[0]}?rel=0&modestbranding=1&controls=1`}
+                  title={activeVideo?.title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="absolute top-0 left-0 w-full h-full" />
 
-  </div>
+              </div>
 
-  <div className="bg-white p-6">
+              <div className="bg-white p-6">
 
-    <h2 className="text-3xl font-black mb-2">
-      {activeVideo?.title}
-    </h2>
+                <h2 className="text-3xl font-black mb-2">
+                  {activeVideo?.title}
+                </h2>
 
-    <p className="text-gray-600">
-      LEAD Academy Premium Course
-    </p>
+                <p className="text-gray-600">
+                  LEAD Academy Premium Course
+                </p>
 
-  </div>
+              </div>
 
-</div>
+            </div><Comments courseId={id} /></>
 
           ) : (
 
