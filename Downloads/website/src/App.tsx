@@ -6,6 +6,8 @@ import About from './components/About';
 import Courses from './components/Courses';
 import Footer from './components/Footer';
 
+import LiveClass from './components/LiveClass';
+
 import Faculty from './components/Faculty';
 import Contact from './components/Contact';
 
@@ -61,6 +63,12 @@ export default function App() {
   if (path === '/terms') {
     return <Terms />;
   }
+
+  // LIVE CLASS
+
+if (path === '/live') {
+  return <LiveClass />;
+}
 
   // COURSE DETAIL
 

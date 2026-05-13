@@ -60,7 +60,15 @@ export default function Hero() {
     className="bg-white border-2 border-primary text-blue-700 hover:bg-blue-600 hover:text-white font-bold py-3 px-6 rounded-xl transition-all duration-200 flex items-center justify-center gap-2"
   >
     Watch Demo Video
-  </button>
+ </button>
+
+{/* Live Class Button */}
+<a
+  href="/live"
+  className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-xl transition-all duration-200 flex items-center justify-center gap-2"
+>
+  Join Live Class
+</a>
 
 </div>
             <div className="grid grid-cols-3 gap-6">
