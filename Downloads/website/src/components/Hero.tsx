@@ -37,14 +37,29 @@ export default function Hero() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-10">
-              <button className="btn-primary flex items-center justify-center gap-2">
-                Join Online Course <ArrowRight size={20} />
-              </button>
-              <a href="#youtube" className="bg-white border-2 border-primary text-blue-700 hover:bg-blue-600 hover:text-white font-bold py-3 px-6 rounded-xl transition-all duration-200 flex items-center justify-center gap-2">
-                Watch Demo Video
-              </a>
-            </div>
 
+  {/* Join Course Button */}
+  <button
+    onClick={() => window.location.href = "/courses"}
+    className="btn-primary flex items-center justify-center gap-2"
+  >
+    Join Online Course <ArrowRight size={20} />
+  </button>
+
+  {/* Watch Demo Video Button */}
+  <button
+    onClick={() =>
+      window.open(
+        "https://www.youtube.com/@leadacademypatnaby-sumanpa4179",
+        "_blank"
+      )
+    }
+    className="bg-white border-2 border-primary text-blue-700 hover:bg-blue-600 hover:text-white font-bold py-3 px-6 rounded-xl transition-all duration-200 flex items-center justify-center gap-2"
+  >
+    Watch Demo Video
+  </button>
+
+</div>
             <div className="grid grid-cols-3 gap-6">
               <div className="flex items-center gap-3">
                 <div className="bg-accent/10 p-2 rounded-lg text-accent">
