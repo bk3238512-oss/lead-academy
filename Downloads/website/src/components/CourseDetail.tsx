@@ -276,21 +276,44 @@ export default function CourseDetail({ id }: any) {
 
           {isEnrolled ? (
 
-            <iframe
-              width="100%"
-              height="500"
-              src={`https://www.youtube.com/embed/${
-                activeVideo?.url
-                  ?.replace(
-                    'https://www.youtube.com/watch?v=',
-                    ''
-                  )
-                  ?.split('&')[0]
-              }`}
-              title={activeVideo?.title}
-              allowFullScreen
-              className="rounded-2xl bg-black"
-            />
+            <div className="bg-black rounded-3xl overflow-hidden shadow-2xl">
+
+  <div className="relative w-full aspect-video">
+
+    <iframe
+      src={`https://www.youtube.com/embed/${
+        activeVideo?.url
+          ?.replace(
+            'https://www.youtube.com/watch?v=',
+            ''
+          )
+          ?.replace(
+            'https://youtu.be/',
+            ''
+          )
+          ?.split('&')[0]
+      }?rel=0&modestbranding=1&controls=1`}
+      title={activeVideo?.title}
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+      className="absolute top-0 left-0 w-full h-full"
+    />
+
+  </div>
+
+  <div className="bg-white p-6">
+
+    <h2 className="text-3xl font-black mb-2">
+      {activeVideo?.title}
+    </h2>
+
+    <p className="text-gray-600">
+      LEAD Academy Premium Course
+    </p>
+
+  </div>
+
+</div>
 
           ) : (
 
