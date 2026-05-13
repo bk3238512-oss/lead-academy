@@ -6,6 +6,9 @@ import About from './components/About';
 import Courses from './components/Courses';
 import Footer from './components/Footer';
 
+import Faculty from './components/Faculty';
+import Contact from './components/Contact';
+
 import CourseDetail from './components/CourseDetail';
 import AdminDashboard from './components/AdminDashboard';
 
