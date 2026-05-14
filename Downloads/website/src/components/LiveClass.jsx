@@ -25,7 +25,7 @@ export default function LiveClass() {
 <iframe
   width="100%"
   height="700"
-  src="https://www.youtube.com/embed/n7uI8aQE_sU?autoplay=1"
+  src="https://www.youtube.com/embed/7s2loX4ayjY?autoplay=1"
   title="YouTube Live Stream"
   frameBorder="0"
   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
